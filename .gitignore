@@ -5,3 +5,4 @@ www/js/server/server.js
 .DS_Store
 Thumbs.db
 /node_modules
+/platforms/ios

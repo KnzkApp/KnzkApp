@@ -1,0 +1,13 @@
+{
+    "name": "tk.yuzu.app.knzkapp.alpha",
+    "version": "1.0.7",
+    "displayName": "knzk.me",
+    "cordova": {
+        "platforms": [
+            "ios"
+        ]
+    },
+    "dependencies": {
+        "cordova-ios": "^4.4.0"
+    }
+}
