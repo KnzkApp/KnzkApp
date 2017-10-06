@@ -4,3 +4,4 @@ www/js/server/server.js
 .idea/
 .DS_Store
 Thumbs.db
+/node_modules
