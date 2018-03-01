@@ -346,11 +346,11 @@ function initevent() {
     }
 
     document.addEventListener('prechange', function(event) {
-        console.log(event);
-        document.getElementById('home_title').innerHTML = event.tabItem.getAttribute('label');
-        now_TL = event.tabItem.getAttribute('tl_id');
-        showTL(null,null,null,true);
-
+        if ($("#navigator").attr("page") === "home.html") {
+            document.getElementById('home_title').innerHTML = event.tabItem.getAttribute('label');
+            now_TL = event.tabItem.getAttribute('tl_id');
+            showTL(null,null,null,true);
+        }
     });
 
     $(document).on('click', '.timeline', function(event) {
