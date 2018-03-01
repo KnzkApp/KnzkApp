@@ -418,37 +418,22 @@ function showAccountTL(id, more_load, media) {
 }
 
 var TL_prev = function() {
-    var carousel = document.getElementById('carousel');
-    carousel.prev();
-    SpeedDial_icon_change(carousel.getActiveIndex());
+    var tab = document.getElementById('tl-tabs');
+    tab.setActiveTab(tab.getActiveIndex() - 1);
 };
 
 var TL_next = function() {
-    var carousel = document.getElementById('carousel');
-    carousel.next();
-    SpeedDial_icon_change(carousel.getActiveIndex());
+    var tab = document.getElementById('tl-tabs');
+    tab.setActiveTab(tab.getActiveIndex() + 1);
 };
 
 function TL_change(mode) {
-    SpeedDial_icon_change(mode);
-    var carousel = document.getElementById('carousel');
-    carousel.setActiveIndex(mode);
-}
-
-function SpeedDial_icon_change(mode) {
-    var iconclass;
-    if (mode !== 3) {
-        var fa;
-        if (mode === 0) fa = "fa-users"; else if (mode === 1) fa = "fa-home"; else if (mode === 2) fa = "fa-picture-o"; else if (mode === 4) fa = "fa-globe";
-        iconclass = "ons-icon "+fa+" fa";
-    } else {
-        iconclass = "ons-icon zmdi zmdi-collection-image-o";
-    }
-    document.getElementById("speeddial_icon").className = iconclass;
+    var tab = document.getElementById('tl-tabs');
+    tab.setActiveTab(mode);
 }
 
 function scrollTL() {
-    $("#"+now_TL+"_item").scrollTop(0);
+    $(".page__content").scrollTop(0);
     if (getConfig(1, 'head_reset') == 1) showTL(null, null, null, true);
 }
 
