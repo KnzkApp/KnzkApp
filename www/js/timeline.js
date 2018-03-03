@@ -419,12 +419,18 @@ function showAccountTL(id, more_load, media) {
 
 function TL_prev() {
     var tab = document.getElementById('tl_tabs');
-    tab.setActiveTab(tab.getActiveTabIndex() - 1);
+    var index = tab.getActiveTabIndex();
+    if (index >= 1) {
+        tab.setActiveTab(index - 1);
+    }
 }
 
 function TL_next() {
     var tab = document.getElementById('tl_tabs');
-    tab.setActiveTab(tab.getActiveTabIndex() + 1);
+    var index = tab.getActiveTabIndex();
+    if (index !== -1 && index < 4) {
+        tab.setActiveTab(index + 1);
+    }
 }
 
 function TL_change(mode) {
