@@ -155,7 +155,7 @@ function showTL(mode, reload, more_load, clear_load) {
         more_load = false;
         setTLheadcolor(0);
         try {
-            if (last_load_TL) document.getElementById(last_load_TL+"_main").innerHTML = "";
+            if (last_load_TL) document.querySelector('#'+last_load_TL+'_main > .page__content').innerHTML = "";
         } catch (e) {
             console.error(e);
         }
@@ -216,7 +216,7 @@ function showTL(mode, reload, more_load, clear_load) {
                     displayTime('update');
                 }
                 if (more_load) {
-                    reshtml = document.getElementById(id_main).innerHTML;
+                    reshtml = document.querySelector('#'+id_main+' > .page__content').innerHTML;
                 } else {
                     if (getConfig(1, 'realtime') == 1) {
                         if (now_TL === "public" || now_TL === "public_media")
@@ -244,7 +244,7 @@ function showTL(mode, reload, more_load, clear_load) {
 
                                         if (home_auto_mode) { //OK
                                             home_auto_event = false;
-                                            document.getElementById(now_TL+"_main").innerHTML = toot_card(ws_reshtml, "full", null, TLmode) + home_auto_tmp + document.getElementById(now_TL+"_main").innerHTML;
+                                            document.querySelector('#'+now_TL+'_main > .page__content').innerHTML = toot_card(ws_reshtml, "full", null, TLmode) + home_auto_tmp + document.querySelector('#'+now_TL+'_main > .page__content').innerHTML;
                                             home_auto_tmp = "";
                                             home_auto_num = 0;
                                             setTLheadcolor(0);
@@ -284,7 +284,7 @@ function showTL(mode, reload, more_load, clear_load) {
                 }
 
                 if (!more_load && mode == last_load_TL && !clear_load) { //追加読み込みでない&前回と同じTL
-                    reshtml += document.getElementById(id_main).innerHTML;
+                    reshtml += document.querySelector('#'+id_main+' > .page__content').innerHTML;
                 }
                 if (more_load || mode != last_load_TL || clear_load) { //TL初回
                     initph("TL");
@@ -292,7 +292,7 @@ function showTL(mode, reload, more_load, clear_load) {
                     reshtml += "<button class='button button--large--quiet more_load_bt_"+now_TL+"' onclick='showTL(null,null,this)'>もっと読み込む...</button>";
                 }
                 last_load_TL = mode;
-                document.getElementById(id_main).innerHTML = reshtml;
+                document.querySelector('#'+id_main+' > .page__content').innerHTML = reshtml;
                 if (reload && reload !== "dial") reload();
                 return true;
             }
@@ -417,18 +417,18 @@ function showAccountTL(id, more_load, media) {
     });
 }
 
-var TL_prev = function() {
-    var tab = document.getElementById('tl-tabs');
+function TL_prev() {
+    var tab = document.getElementById('tl_tabs');
     tab.setActiveTab(tab.getActiveIndex() - 1);
-};
+}
 
-var TL_next = function() {
-    var tab = document.getElementById('tl-tabs');
+function TL_next() {
+    var tab = document.getElementById('tl_tabs');
     tab.setActiveTab(tab.getActiveIndex() + 1);
-};
+}
 
 function TL_change(mode) {
-    var tab = document.getElementById('tl-tabs');
+    var tab = document.getElementById('tl_tabs');
     tab.setActiveTab(mode);
 }
 

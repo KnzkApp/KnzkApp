@@ -363,10 +363,10 @@ function initevent() {
 function home_autoevent() {
     setTimeout(function () {
         if (home_auto_event) {
-            var h = $("#"+now_TL+"_item").scrollTop();
+            var h = document.querySelector('#'+now_TL+'_main > .page__content').scrollTop;
             home_auto_mode = h <= 100;
             if (home_auto_tmp !== "" && home_auto_mode) {
-                document.getElementById(now_TL+"_main").innerHTML = home_auto_tmp + document.getElementById(now_TL+"_main").innerHTML;
+                document.querySelector('#'+now_TL+'_main > .page__content').innerHTML = home_auto_tmp + document.querySelector('#'+now_TL+'_main > .page__content').innerHTML;
                 home_auto_tmp = "";
                 home_auto_num = 0;
                 setTLheadcolor(0);
