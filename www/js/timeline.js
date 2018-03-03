@@ -419,12 +419,12 @@ function showAccountTL(id, more_load, media) {
 
 function TL_prev() {
     var tab = document.getElementById('tl_tabs');
-    tab.setActiveTab(tab.getActiveIndex() - 1);
+    tab.setActiveTab(tab.getActiveTabIndex() - 1);
 }
 
 function TL_next() {
     var tab = document.getElementById('tl_tabs');
-    tab.setActiveTab(tab.getActiveIndex() + 1);
+    tab.setActiveTab(tab.getActiveTabIndex() + 1);
 }
 
 function TL_change(mode) {
