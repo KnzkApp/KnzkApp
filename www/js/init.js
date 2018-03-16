@@ -152,7 +152,6 @@ function init() {
                         showTL("local", null, null, true, null);
 
                         setTimeout(function () {
-                            console.log(getConfig(1, 'tutorial'));
                             if (getConfig(1, 'tutorial') !== 1) {
                                 loadNav("tutorial.html", "up");
                                 setConfig(1, "tutorial", 1);
