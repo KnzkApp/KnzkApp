@@ -65,17 +65,17 @@ cordova-plugin-customurlscheme@:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/cordova-plugin-customurlscheme/-/cordova-plugin-customurlscheme-4.3.0.tgz#02f968778b4093990eb0407f3fa1b1458d705f94"
 
-cordova-plugin-inappbrowser@2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/cordova-plugin-inappbrowser/-/cordova-plugin-inappbrowser-2.0.1.tgz#fea937d548191afe61ad7c98f523f1fc6222e5b3"
+cordova-plugin-inappbrowser@2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-inappbrowser/-/cordova-plugin-inappbrowser-2.0.2.tgz#a448fcbe974ca6b42988bd3455109d923d6c9769"
 
 cordova-plugin-safariviewcontroller@:
   version "1.5.3"
   resolved "https://registry.yarnpkg.com/cordova-plugin-safariviewcontroller/-/cordova-plugin-safariviewcontroller-1.5.3.tgz#24e22755d93c78fe70a5ac36ebbdb1d83e339ffa"
 
-cordova-plugin-splashscreen@5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/cordova-plugin-splashscreen/-/cordova-plugin-splashscreen-5.0.1.tgz#e227172593942c2479b0e1f769feddc21c8b55a3"
+cordova-plugin-splashscreen@5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-splashscreen/-/cordova-plugin-splashscreen-5.0.2.tgz#747e74f56e201cd585bc62d14bca19f6867ff1ed"
 
 cordova-plugin-statusbar@2.4.1:
   version "2.4.1"
@@ -165,7 +165,7 @@ plist@2.0.1:
     xmlbuilder "8.2.2"
     xmldom "0.1.x"
 
-plist@xiangpingmeng/plist.js:
+"plist@github:xiangpingmeng/plist.js":
   version "1.2.0"
   resolved "https://codeload.github.com/xiangpingmeng/plist.js/tar.gz/5ccd600b0b7fd3ae204edc9e69c1c30406d07747"
   dependencies:
