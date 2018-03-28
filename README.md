@@ -31,7 +31,7 @@ Mastodonの基本機能はもちろん、いくつかのインスタンスの追
 - [Glitch-soc](https://github.com/glitch-soc/mastodon/) Features
   - Local-only
   - Doodle
-  - DM TimeLine
+  - DM Timeline
   - etc...
 - BBCode (from [now.kibousoft.co.jp](https://now.kibousoft.co.jp/))
 - Enquete (from [friends.nico](https://friends.nico/))
