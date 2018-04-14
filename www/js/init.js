@@ -408,7 +408,7 @@ function initevent() {
   if (ons.isWebView()) {
     FCMPlugin.onTokenRefresh(function(token) {
       FCM_token = token;
-      if (getConfig(1, 'notification')) registerNotification();
+      if (LoadNotificationConfig()["is_running"]) changeNotification("");
     });
   }
 }
