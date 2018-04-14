@@ -25,3 +25,67 @@ function resetLabel() {
   noti.addClass("invisible");
   Notification_num = 0
 }
+
+function changeNotification() {
+  var name = localStorage.getItem('knzkapp_now_mastodon_username')+"@"+inst;
+  var config = getConfig(4, name);
+  if (!config) {
+    config = {"option": {}, "server": "", "is_change": 0, "is_running": 0};
+    setConfig(4, name, config);
+  }
+  if (!config["server"]) {
+    setNotificationServer(changeNotification);
+  } else {
+    var is_unregister = "";
+    if (config["is_running"]) {
+      is_unregister = "un";
+    }
+    setConfig(4, name, config);
+    fetch("https://" + getConfig(4, "server") + "/"+is_unregister+"register", {
+      headers: {'content-type': 'www-url-form-urlencoded'},
+      method: 'POST',
+      body: JSON.stringify({
+        server_key: push_default_serverKey,
+        instance_url: inst,
+        access_token: localStorage.getItem('knzkapp_now_mastodon_token'),
+        device_token: FCM_token,
+        option: JSON.parse(config["option"]),
+        language: "ja",
+        app_name: version
+      })
+    }).then(function (response) {
+      if (response.ok) {
+        return response.json();
+      } else {
+        sendLog("Error/registerNotification", response.json);
+        throw new Error();
+      }
+    }).then(function (json) {
+      showtoast("ok_conf");
+    }).catch(function (error) {
+      showtoast('cannot-pros');
+      console.log(error);
+    });
+  }
+}
+
+function setNotificationServer(callback) {
+  fetch(push_default_centerURL, {method: 'GET'}).then(function (response) {
+    if (response.ok) {
+      return response.json();
+    } else {
+      sendLog("Error/setNotificationServer", response.json);
+      throw new Error();
+    }
+  }).then(function (json) {
+    if (json[0]) {
+      setConfig(4, "server", json[0]);
+      if (callback) callback();
+    } else {
+      ons.notification.alert('通知サーバーが見つかりませんでした。<br>開発者にご連絡ください。', {title: 'エラー'});
+    }
+  }).catch(function (error) {
+    showtoast('cannot-pros');
+    console.log(error);
+  });
+}

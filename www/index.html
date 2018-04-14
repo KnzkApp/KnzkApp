@@ -84,6 +84,7 @@
       var timeline_default_tab = 0;
       var Notification_ws = null;
       var Notification_num = 0;
+      var FCM_token = null;
     </script>
     <script src="config/instance.js"></script>
     <script src="config/config.js"></script>
@@ -721,6 +722,14 @@
             </div>
             <div class="center">
               ユーザー情報編集
+            </div>
+          </ons-list-item>
+          <ons-list-item modifier="chevron" tappable onclick="loadNav('config_TL.html')">
+            <div class="left">
+              <i class="list-item__icon list-item--chevron__icon ons-icon fa-bell-o fa fa-fw"></i>
+            </div>
+            <div class="center">
+              プッシュ通知設定
             </div>
           </ons-list-item>
         </ons-list>

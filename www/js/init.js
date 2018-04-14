@@ -404,6 +404,13 @@ function initevent() {
       if (pageid === "home") TL_prev();
     });
   }
+
+  if (ons.isWebView()) {
+    FCMPlugin.onTokenRefresh(function(token) {
+      FCM_token = token;
+      if (getConfig(1, 'notification')) registerNotification();
+    });
+  }
 }
 
 function home_autoevent() {
