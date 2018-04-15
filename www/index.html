@@ -1102,9 +1102,9 @@
           </div>
           <div class="center">プッシュ通知</div>
           <div class="right">
-            <ons-toolbar-button onclick="BackTab()">
-              保存
+            <ons-toolbar-button onclick="changeNotification(undefined, true)">
               <ons-icon icon="fa-floppy-o"></ons-icon>
+              保存
             </ons-toolbar-button>
           </div>
         </ons-toolbar>
@@ -1118,40 +1118,42 @@
             </div>
           </ons-list-item>
         </ons-list>
+        <div class="container"><p><b>*設定を保存するまでサーバー上に更新されません。</b></p></div>
         <div class="container"><h4>通常の通知</h4></div>
         <ons-list>
           <ons-list-header>ミュートする通知 (全体)</ons-list-header>
-          <ons-list-item tappable onclick="changeConfNotification('all')">
+          <ons-list-item tappable onclick="changeConfNotificationMute('all')">
             <label class="left">
               <ons-checkbox input-id="noti-mute-all"></ons-checkbox>
             </label>
             <label for="noti-mute-all" class="center">すべて</label>
           </ons-list-item>
-          <ons-list-item tappable onclick="changeConfNotification('follow')">
+          <ons-list-item tappable onclick="changeConfNotificationMute('follow')">
             <label class="left">
               <ons-checkbox input-id="noti-mute-follow"></ons-checkbox>
             </label>
             <label for="noti-mute-follow" class="center">フォロー</label>
           </ons-list-item>
-          <ons-list-item tappable onclick="changeConfNotification('mention')">
+          <ons-list-item tappable onclick="changeConfNotificationMute('mention')">
             <label class="left">
               <ons-checkbox input-id="noti-mute-mention"></ons-checkbox>
             </label>
             <label for="noti-mute-mention" class="center">メンション</label>
           </ons-list-item>
-          <ons-list-item tappable onclick="changeConfNotification('reblog')">
+          <ons-list-item tappable onclick="changeConfNotificationMute('reblog')">
             <label class="left">
               <ons-checkbox input-id="noti-mute-reblog"></ons-checkbox>
             </label>
             <label for="noti-mute-reblog" class="center">ブースト</label>
           </ons-list-item>
-          <ons-list-item tappable onclick="changeConfNotification('favourite')">
+          <ons-list-item tappable onclick="changeConfNotificationMute('favourite')">
             <label class="left">
               <ons-checkbox input-id="noti-mute-favourite"></ons-checkbox>
             </label>
             <label for="noti-mute-favourite" class="center">お気に入り</label>
           </ons-list-item>
         </ons-list>
+        <!--
         <ons-list>
           <ons-list-header>ミュートする通知 (ユーザー)</ons-list-header>
         </ons-list>
@@ -1159,7 +1161,9 @@
           ユーザーごとの通知制御は<b>ユーザーメニュー > フィルター</b>より行えます<br>
           *ユーザー通知ミュート反映にはアプリの再起動が必要です。
         </div>
-        <div class="container"><h4>キーワード検知 <button class="button button--outline" style="border-radius: 100%;line-height: initial;"><i class="zmdi zmdi-plus"></i></button></h4>HTLをウォッチします</div>
+        -->
+        <div class="container"><h4>キーワード検知 <button class="button button--outline" style="border-radius: 100%;line-height: initial;" onclick="addKeyWord()"><i class="zmdi zmdi-plus"></i></button></h4>HTLをウォッチします</div>
+        <ons-list id="keyword_list"></ons-list>
       </ons-page>
     </ons-template>
     <ons-template id="config_TL.html">

@@ -7,7 +7,7 @@ function getConfig(type, name) {
     } else if (type === 3) {
       config_tmp[type] = localStorage.getItem('knzkapp_conf_mastodon_timeline');
     } else if (type === 4) {
-      config_tmp[type] = localStorage.getItem('knzkapp_conf_mastodon_timeline');
+      config_tmp[type] = localStorage.getItem('knzkapp_conf_mastodon_push');
     }
   }
 

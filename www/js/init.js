@@ -289,6 +289,21 @@ function initevent() {
         hide('now_loading');
       }, 500);
     }
+
+    if (event.enterPage.id === "config_notification-page") {
+      show('now_loading');
+      setTimeout(function () {
+        document.getElementById("noti-mode").checked = !!LoadNotificationConfig()["is_running"];
+        var conf = $("[id^='noti-mute-']"), i = 0;
+        while (conf[i]) {
+          conf[i].checked = LoadNotificationConfig()["option"]["notification"]["all"][conf[i].id.replace("noti-mute-", "")];
+          i++;
+        }
+        renderKeyWordList();
+        hide('now_loading');
+      }, 500);
+    }
+
     if (event.enterPage.id === "login-page") {
       if (localStorage.getItem('knzkapp_now_mastodon_token')) {
         setTimeout(function () {
@@ -344,6 +359,9 @@ function initevent() {
 
     if (event.enterPage.id === "config_TL-page") {
       initTLConf();
+    }
+    if (event.enterPage.id === "config_notification-page") {
+      setNotificationServer();
     }
   });
 
@@ -407,8 +425,14 @@ function initevent() {
 
   if (ons.isWebView()) {
     FCMPlugin.onTokenRefresh(function(token) {
+      if (FCM_token) var t = true;
       FCM_token = token;
-      if (LoadNotificationConfig()["is_running"]) changeNotification("");
+      if (LoadNotificationConfig()["is_running"] && !t) changeNotification("");
+    });
+    FCMPlugin.getToken(function(token) {
+      if (FCM_token) var t = true;
+      FCM_token = token;
+      if (LoadNotificationConfig()["is_running"] && !t) changeNotification("");
     });
   }
 }
