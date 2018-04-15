@@ -292,6 +292,7 @@ function initevent() {
     }
 
     if (event.enterPage.id === "config_notification-page") {
+      setNotificationServer();
       show('now_loading');
       setTimeout(function () {
         document.getElementById("noti-mode").checked = !!LoadNotificationConfig()["is_running"];
@@ -360,9 +361,6 @@ function initevent() {
 
     if (event.enterPage.id === "config_TL-page") {
       initTLConf();
-    }
-    if (event.enterPage.id === "config_notification-page") {
-      setNotificationServer();
     }
   });
 
