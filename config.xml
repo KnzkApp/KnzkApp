@@ -72,12 +72,6 @@
     <splash src="/res/android/screen/splash-port-hdpi.9.png" density="port-hdpi"/>
     <splash src="/res/android/screen/splash-port-xhdpi.9.png" density="port-xhdpi"/>
     <splash src="/res/android/screen/splash-port-xxhdpi.9.png" density="port-xxhdpi"/>
-    <resource-file src="/res/android/icon/ldpi.png" target="res/mipmap-ldpi/fcm_push_icon.png"/>
-    <resource-file src="/res/android/icon/mdpi.png" target="res/mipmap-mdpi/fcm_push_icon.png"/>
-    <resource-file src="/res/android/icon/hdpi.png" target="res/mipmap-hdpi/fcm_push_icon.png"/>
-    <resource-file src="/res/android/icon/xdpi.png" target="res/mipmap-xdpi/fcm_push_icon.png"/>
-    <resource-file src="/res/android/icon/xxdpi.png" target="res/mipmap-xxdpi/fcm_push_icon.png"/>
-    <resource-file src="/res/android/icon/xxxdpi.png" target="res/mipmap-xxxdpi/fcm_push_icon.png"/>
   </platform>
   <platform name="windows">
     <icon src="/res/winrt/icon/app_tile_wide_logo_winrt.png" target="Wide315x150Logo"/>
