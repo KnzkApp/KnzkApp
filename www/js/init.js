@@ -165,6 +165,7 @@ function init() {
               }
             }, 500);
           } catch (e) {
+            console.log(e);
             sendLog("Error/init_2", e);
           }
         }).catch(function (error) {
@@ -427,12 +428,12 @@ function initevent() {
     FCMPlugin.onTokenRefresh(function(token) {
       if (FCM_token) var t = true;
       FCM_token = token;
-      if (LoadNotificationConfig()["is_running"] && !t) changeNotification("");
+      if (LoadNotificationConfig()["is_running"] && !t) changeNotification(undefined, true);
     });
     FCMPlugin.getToken(function(token) {
       if (FCM_token) var t = true;
       FCM_token = token;
-      if (LoadNotificationConfig()["is_running"] && !t) changeNotification("");
+      if (LoadNotificationConfig()["is_running"] && !t) changeNotification(undefined, true);
     });
   }
 }

@@ -35,7 +35,7 @@ function changeNotification(force, update) {
   }
   if (FCM_token) {
     var is_unregister = force !== undefined ? force : "";
-    if (config["is_running"] && force === undefined) {
+    if (config["is_running"] && force === undefined && !update) {
       is_unregister = "un";
     }
     var formdata = {
