@@ -58,7 +58,7 @@ Mastodonの基本機能はもちろん、いくつかのインスタンスの追
 - Firebaseで生成した`google-services.json` / `GoogleService-Info.plist`をルートディレクトリに設置して下さい。
 
 ## License
-[KnzkApp License ( Restricted BSD License )](https://github.com/KnzkDev/KnzkApp/blob/master/LICENSE)
+[KnzkApp License (Restricted BSD License)](https://github.com/KnzkDev/KnzkApp/blob/master/LICENSE)
 
 その他: https://github.com/KnzkDev/KnzkApp/wiki/License
 
