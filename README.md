@@ -22,6 +22,11 @@
     <a href="http://makeapullrequest.com">
     <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge">
   </p>
+
+  <p align="center">
+    <a href="https://github.com/KnzkDev/KnzkApp/blob/master/LICENSE">
+    <img src="https://img.shields.io/badge/license-knzkapp%20license-blue.svg?style=for-the-badge">
+  </p>
 </p>
 
 ## 特徴
