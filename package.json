@@ -8,7 +8,8 @@
   "private": true,
   "scripts": {
     "lint:html": "htmlhint",
-    "lint:css": "stylelint"
+    "lint:css": "stylelint 'www/css/*.css'",
+    "fix:css": "stylelint --fix 'www/css/*.css'"
   },
   "cordova": {
     "plugins": {
