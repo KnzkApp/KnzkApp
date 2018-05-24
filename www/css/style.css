@@ -504,10 +504,6 @@ img.emoji {
   border: 1px solid orangered !important;
 }
 
-.user-bio > p > a, .user-bio > p > a:link, .user-bio > p > a:visited, .user-bio > p > a:hover {
-  text-decoration: underline;
-}
-
 .TL_reload {
   color: #2b90d9 !important;
 }
@@ -609,8 +605,20 @@ img.emoji {
   line-height: 20px;
 }
 
-.alert-dialog-content > a:link, .alert-dialog-content > a {
+.alert-dialog-content > a {
   color: #2b90d9 !important;
+}
+
+.user-bio > p > a {
+  text-decoration: underline;
+}
+
+.alert-dialog-content > a:link {
+  color: #2b90d9 !important;
+}
+
+.user-bio > p > a:link, .user-bio > p > a:visited, .user-bio > p > a:hover {
+  text-decoration: underline;
 }
 
 .no-icon-mode {
