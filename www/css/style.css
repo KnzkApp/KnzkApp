@@ -24,6 +24,7 @@ html, body {
   0% {
     opacity: 1;
   }
+
   100% {
     opacity: 0.5;
   }
@@ -133,7 +134,7 @@ html, body {
   overflow-y: hidden;
   background-size: cover;
   background-position: 50%;
-  background-color: rgba(23, 25, 31, .5);
+  background-color: rgba(23, 25, 31, 0.5);
 }
 
 .userpage-button-bg {
@@ -147,8 +148,8 @@ html, body {
 
 .userpage-follower {
   color: white;
-  opacity: .7;
-  background-color: rgba(0, 0, 0, .5);
+  opacity: 0.7;
+  background-color: rgba(0, 0, 0, 0.5);
   text-transform: uppercase;
   font-size: 11px;
   font-weight: 500;
@@ -178,7 +179,7 @@ html, body {
 
 .card-bio {
   padding: 5px 0 15px;
-  background: rgba(23, 25, 31, .8);
+  background: rgba(23, 25, 31, 0.8);
 }
 
 .user-name {
@@ -358,7 +359,7 @@ pre {
 }
 
 .splitter-profile {
-  background: rgba(23, 25, 31, .8);
+  background: rgba(23, 25, 31, 0.8);
   width: 100%;
   padding-left: 30px;
 }
@@ -444,7 +445,7 @@ ons-fab, ons-speed-dial {
 img.emoji {
   height: 1em;
   width: 1em;
-  margin: 0 .05em 0 .1em;
+  margin: 0 0.05em 0 0.1em;
   vertical-align: -0.1em;
 }
 
@@ -481,6 +482,7 @@ img.emoji {
     bottom: 0;
 }
 */
+
 /* 簡易トゥートあり */
 
 .fab--bottom__right {
@@ -520,7 +522,7 @@ img.emoji {
 .emoji, .emojione {
   width: 20px !important;
   height: 20px !important;
-  margin: -5px .05em -3px .1em !important
+  margin: -5px 0.05em -3px 0.1em !important
 }
 
 .toot_name .emoji, .toot_name .emojione {
