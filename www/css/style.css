@@ -271,14 +271,11 @@ html, body {
   width: 50%;
   text-align: center;
   padding: 10px 5px;
+  border-right: 1px solid #393f4f;
 }
 
 .account_tab_left {
   border-left: 1px solid #393f4f;
-}
-
-.account_tab {
-  border-right: 1px solid #393f4f;
 }
 
 .account_bar {
@@ -364,17 +361,14 @@ pre {
   padding-left: 30px;
 }
 
-.splitter-profile-item > .center {
-  padding-right: 0;
-  padding-top: 0;
-}
-
 .splitter-profile-item {
   padding-left: 0;
 }
 
 .splitter-profile-item > .center {
   padding-bottom: 0;
+  padding-right: 0;
+  padding-top: 0;
 }
 
 .toot-group {
@@ -659,11 +653,6 @@ img.emoji {
   user-select: text;
 }
 
-.ep_category {
-  display: flex;
-  justify-content: space-around;
-}
-
 .close_button {
   position: absolute;
   top: 0;
@@ -686,6 +675,8 @@ img.emoji {
 }
 
 .ep_category {
+  display: flex;
+  justify-content: space-around;
   background-color: #ccc;
   border-radius: 0 0 4px 4px;
 }
