@@ -6,6 +6,9 @@
   "author": "KnzkDev Team",
   "license": "SEE LICENSE IN LICENSE",
   "private": true,
+  "scripts": {
+    "lint:html": "htmlhint"
+  },
   "cordova": {
     "plugins": {
       "monaca-plugin-monaca-core": {},
