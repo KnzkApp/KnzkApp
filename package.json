@@ -45,6 +45,8 @@
     "monaca-plugin-monaca-core": "^3.2.0"
   },
   "devDependencies": {
-    "htmlhint": "^0.9.13"
+    "htmlhint": "^0.9.13",
+    "stylelint": "^9.2.1",
+    "stylelint-config-standard": "^18.2.0"
   }
 }
