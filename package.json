@@ -9,6 +9,7 @@
   "scripts": {
     "lint:html": "htmlhint",
     "lint:css": "stylelint 'www/css/*.css'",
+    "lint": "npm-run-all lint:* -s",
     "fix:css": "stylelint --fix 'www/css/*.css'"
   },
   "cordova": {
