@@ -512,7 +512,7 @@ img.emoji {
 .emoji, .emojione {
   width: 20px !important;
   height: 20px !important;
-  margin: -5px 0.05em -3px 0.1em !important
+  margin: -5px 0.05em -3px 0.1em !important;
 }
 
 .toot_name .emoji, .toot_name .emojione {
