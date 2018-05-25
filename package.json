@@ -11,7 +11,7 @@
     "lint:css": "stylelint www/css/*.css",
     "lint:js": "eslint **/*.js",
     "lint": "npm-run-all lint:* -s",
-    "fix:css": "stylelint --fix 'www/css/*.css'",
+    "fix:css": "prettier www/css/*.css --write",
     "fix:js": "eslint **/*.js --fix"
   },
   "cordova": {
