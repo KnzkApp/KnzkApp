@@ -1,9 +1,11 @@
-html, body {
+html,
+body {
   max-width: 100%;
   height: 100%;
 }
 
-.disable, .invisible {
+.disable,
+.invisible {
   display: none;
 }
 
@@ -115,7 +117,8 @@ html, body {
   color: #ca8f04 !important;
 }
 
-.boost-active, .follow-active {
+.boost-active,
+.follow-active {
   color: #2b90d9 !important;
 }
 
@@ -232,7 +235,8 @@ html, body {
   font-size: 14px !important;
 }
 
-.select-input, .text-input {
+.select-input,
+.text-input {
   color: #fff;
 }
 
@@ -432,7 +436,8 @@ pre {
   min-height: 5px;
 }
 
-ons-fab, ons-speed-dial {
+ons-fab,
+ons-speed-dial {
   z-index: 1;
 }
 
@@ -509,33 +514,39 @@ img.emoji {
 }
 
 /* 絵文字 */
-.emoji, .emojione {
+.emoji,
+.emojione {
   width: 20px !important;
   height: 20px !important;
   margin: -5px 0.05em -3px 0.1em !important;
 }
 
-.toot_name .emoji, .toot_name .emojione {
+.toot_name .emoji,
+.toot_name .emojione {
   height: 1.2em !important;
   width: 1.2em !important;
 }
 
-.fa-2x > .emoji, .fa-2x > .emojione {
+.fa-2x > .emoji,
+.fa-2x > .emojione {
   width: 36px !important;
   height: 36px !important;
 }
 
-.fa-3x > .emoji, .fa-3x > .emojione {
+.fa-3x > .emoji,
+.fa-3x > .emojione {
   width: 54px !important;
   height: 54px !important;
 }
 
-.fa-4x > .emoji, .fa-4x > .emojione {
+.fa-4x > .emoji,
+.fa-4x > .emojione {
   width: 72px !important;
   height: 72px !important;
 }
 
-.fa-5x > .emoji, .fa-5x > .emojione {
+.fa-5x > .emoji,
+.fa-5x > .emojione {
   width: 90px !important;
   height: 90px !important;
 }
@@ -589,7 +600,7 @@ img.emoji {
   right: 0;
   bottom: 0;
   left: 0;
-  content: ' ';
+  content: " ";
 }
 
 .moved-text {
@@ -617,7 +628,9 @@ img.emoji {
   color: #2b90d9 !important;
 }
 
-.user-bio > p > a:link, .user-bio > p > a:visited, .user-bio > p > a:hover {
+.user-bio > p > a:link,
+.user-bio > p > a:visited,
+.user-bio > p > a:hover {
   text-decoration: underline;
 }
 

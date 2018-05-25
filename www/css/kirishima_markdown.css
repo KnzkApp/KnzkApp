@@ -166,11 +166,13 @@ Edited by @yuzulabo
   background-color: #000;
 }
 
-.toot_content td, .toot_content th {
+.toot_content td,
+.toot_content th {
   padding: 0;
 }
 
-.toot_content table th, .toot_content table td {
+.toot_content table th,
+.toot_content table td {
   padding: 6px 13px;
   border: 1px solid #2b90d9;
 }
