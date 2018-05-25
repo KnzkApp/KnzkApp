@@ -12,6 +12,7 @@
     "lint:js": "eslint **/*.js",
     "lint": "npm-run-all lint:* -s",
     "fix:css": "stylelint --fix 'www/css/*.css'",
+    "fix:js": "eslint **/*.js --fix",
     "precommit": "lint-staged"
   },
   "lint-staged": {
