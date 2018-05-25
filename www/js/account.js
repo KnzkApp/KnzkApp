@@ -5,16 +5,16 @@ function AccountCard(acct) {
     "<div onclick='show_account(" +
     acct['id'] +
     ')\' class="toot acct-small">\n' +
-    '    <img src="' +
+    '<img src="' +
     acct['avatar'] +
-    '" class="icon-img-small" align="middle">\n' +
-    '    <span class="toot-group toot-card-right">\n' +
-    '      <b>' +
+    '"class="icon-img-small" align="middle">\n' +
+    '<span class="toot-group toot-card-right">\n' +
+    '<b>' +
     t_text(escapeHTML(acct['display_name'])) +
     '</b> <small>@' +
     acct['acct'] +
     '</small>\n' +
-    '    </span>\n' +
+    '</span>\n' +
     '</div>';
 
   return reshtml;
