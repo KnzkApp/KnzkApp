@@ -15,7 +15,7 @@
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "*.{js,json,css,md}": ["prettier --write", "git add"]
+    "*.js": "eslint --fix"
   },
   "cordova": {
     "plugins": {
