@@ -17,7 +17,7 @@ function i18n_init() {
       }
     );
   } catch (e) {
-    i18n_init_callback('ja');
+    i18n_init_callback('en');
   }
 }
 
