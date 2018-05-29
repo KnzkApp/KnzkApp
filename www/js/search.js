@@ -61,7 +61,7 @@ function HideTrend() {
 function SearchLoad() {
   loadNav('olist_nav.html');
   var q = escapeHTML(document.getElementById('nav-search').value);
-  Fetch('https://' + inst + '/api/v1/search?q=' + q, {
+  Fetch('https://' + inst + '/api/v2/search?q=' + q, {
     headers: {
       'content-type': 'application/json',
       Authorization: 'Bearer ' + now_userconf['token'],
@@ -101,17 +101,20 @@ function SearchLoad() {
         '</ons-list-header></ons-list>';
       while (json['hashtags'][i]) {
         reshtml +=
-          '<div onclick=\'showTagTL("' +
-          json['hashtags'][i] +
-          '")\' class="toot acct-small">\n' +
-          '    <div class="hashtag-card">\n' +
-          '    <span class="toot-group">\n' +
-          '      <b>#' +
-          json['hashtags'][i] +
-          '</b>\n' +
-          '    </span>\n' +
-          '    </div>\n' +
-          '</div>';
+          '<ons-list-item onclick=\'showTagTL("' +
+          json['hashtags'][i]['name'] +
+          '")\'><div class="center trend_item">' +
+          '<span class="list-item__title">#' +
+          json['hashtags'][i]['name'] +
+          '</span>' +
+          '<span class="list-item__subtitle">' +
+          i18next.t('navigation.trend.talking', {
+            accounts: json['hashtags'][i]['history'][0]['accounts'],
+          }) +
+          '</span></div>' +
+          '<div class="right trend_item"><h1>' +
+          json['hashtags'][i]['history'][0]['uses'] +
+          '</h1></div></ons-list-item>';
         i++;
       }
 
