@@ -20,12 +20,12 @@
     "search": "Search",
     "trend": {
       "title": "Trends",
-      "talking": "{{accounts}} Toots"
+      "talking": "{{accounts}} people talking"
     }
   },
   "toot": {
-    "toot": "Tap to toot",
-    "toot_as": "Toot as {{acct}}",
+    "toot": "Toot!",
+    "toot_as": "Toot as {{acct}}!",
     "toot_box_placeholder": "What's on your mind?",
     "reply": {
       "prefix": "Reply to ",
@@ -153,9 +153,9 @@
     "note": "All bookmarks are stored locally to this device.<br>Each instance will have a separate bookmark list.",
     "clear": {
       "title": "Delete All Bookmarks",
-      "text": "You are about to delete all bookmarks of *{{inst}}. <br>Continue?"
+      "text": "You are about to delete all bookmarks of {{inst}}. <br>Continue?"
     },
-    "deleted": "This post has been deleted。<br>Tap to remove it from your bookmarks"
+    "deleted": "This post has been deleted.<br>Tap to remove it from your bookmarks"
   },
   "timeline": {
     "title": "Timelines",
