@@ -1,6 +1,6 @@
 function LoadBookmark() {
-  var reshtml = ''
-  var json = loadBookmark()[inst]
+  let reshtml = ''
+  const json = loadBookmark()[inst]
   loadNav('olist_nav.html')
   if (!instance_config[inst]['glitch_soc']) {
     reshtml += '<div class="toot">\n' + i18next.t('bookmark.note', { interpolation: { escapeValue: false } }) + '</div>'
@@ -38,8 +38,8 @@ function renderBookmark_glitch() {
     })
     .then(json => {
       if (json) {
-        var i = 0
-        var reshtml = ''
+        let i = 0
+        let reshtml = ''
 
         while (json[i]) {
           reshtml += toot_card(json[i], 'full', null)
@@ -101,7 +101,7 @@ function renderBookmark(reshtml, json_bookmark, i) {
 }
 
 function initBookmark() {
-  var bookmark = JSON.parse(localStorage.getItem('knzkapp_bookmark'))
+  let bookmark = JSON.parse(localStorage.getItem('knzkapp_bookmark'))
   if (bookmark == undefined) {
     localStorage.setItem('knzkapp_bookmark', JSON.stringify({}))
     bookmark = JSON.parse(localStorage.getItem('knzkapp_bookmark'))
@@ -114,7 +114,7 @@ function initBookmark() {
 
 function changeBookmark(id) {
   if (!instance_config[inst]['glitch_soc']) {
-    var json = loadBookmark()
+    const json = loadBookmark()
     if (checkBookmark(id)) {
       //削除
       json[inst].splice(json[inst].indexOf(id), 1)
@@ -124,7 +124,7 @@ function changeBookmark(id) {
     }
     saveBookmark(json)
   } else {
-    var bookmark_mode = tl_postdata[id]['bookmarked'] ? '/unbookmark' : '/bookmark'
+    const bookmark_mode = tl_postdata[id]['bookmarked'] ? '/unbookmark' : '/bookmark'
     Fetch('https://' + inst + '/api/v1/statuses/' + id + bookmark_mode, {
       headers: {
         'content-type': 'application/json',
@@ -154,7 +154,7 @@ function changeBookmark(id) {
 function checkBookmark(id) {
   //ブックマークされて無ければfalse
   if (!instance_config[inst]['glitch_soc']) {
-    var json = loadBookmark()
+    const json = loadBookmark()
     return json[inst].indexOf('' + id) !== -1
   } else {
     return tl_postdata[id]['bookmarked']
@@ -182,7 +182,7 @@ function clearBookmark() {
       )
       .then(e => {
         if (e === 1) {
-          var bookmark = loadBookmark()
+          const bookmark = loadBookmark()
           bookmark[inst] = []
           saveBookmark(bookmark)
           BackTab()
@@ -205,7 +205,7 @@ function clearAllBookmark() {
     })
     .then(e => {
       if (e === 1) {
-        var bookmark = {}
+        const bookmark = {}
         bookmark[inst] = []
         saveBookmark(bookmark)
         ons.notification.toast(i18next.t('dialogs_js.clear_done'))
@@ -215,9 +215,9 @@ function clearAllBookmark() {
 
 function migration_app2glitch() {
   if (instance_config[inst]['glitch_soc']) {
-    var json = loadBookmark()
+    const json = loadBookmark()
     if (json[inst][0]) {
-      var i = 0
+      let i = 0
       while (json[inst][i]) {
         Fetch('https://' + inst + '/api/v1/statuses/' + json[inst][i] + '/bookmark', {
           headers: {
@@ -234,7 +234,7 @@ function migration_app2glitch() {
             }
           })
           .then(data => {
-            var id = json[inst].indexOf('' + data['id'])
+            const id = json[inst].indexOf('' + data['id'])
             if (!json[inst][id + 1]) {
               json[inst] = []
               saveBookmark(json, true)

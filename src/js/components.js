@@ -1,8 +1,8 @@
-var showPopover = (target, id) => {
+const showPopover = (target, id) => {
   elemId(id).show(target)
 }
 
-var hidePopover = id => {
+const hidePopover = id => {
   elemId(id).hide()
 }
 
@@ -63,12 +63,12 @@ function load(page) {
 
 function loadNav(page, mode, move_mode) {
   //mode: アニメーション方法, splitter: スライドメニューを使用しているか, move_mode: ページを読み込むモード
-  var option = mode === 'up' ? { animation: 'lift' } : { animation: 'slide' }
+  const option = mode === 'up' ? { animation: 'lift' } : { animation: 'slide' }
 
-  var menu = elemId('splitter-menu')
-  var nav = document.querySelector('#navigator')
+  const menu = elemId('splitter-menu')
+  const nav = document.querySelector('#navigator')
 
-  var onLoad = () => {
+  const onLoad = () => {
     if (!window.isLargeMode) menu.close()
     setTimeout(() => {
       $('[data-i18n]').localize()
@@ -81,7 +81,7 @@ function loadNav(page, mode, move_mode) {
 }
 
 function BackTab(mode) {
-  var option
+  let option
   if (mode === 'down') option = { animation: 'lift' }
   else option = { animation: 'slide' }
 
@@ -92,8 +92,8 @@ function displayTime(mode, time) {
   if (mode == 'new') {
     return new Date(time).toTwitterRelativeTime(lng)
   } else {
-    var i = 0
-    var list = document.getElementsByClassName('date')
+    let i = 0
+    const list = document.getElementsByClassName('date')
     while (list[i]) {
       list[i].innerHTML = displayTime('new', list[i].dataset.time)
       i++
@@ -120,9 +120,9 @@ function showtoast(id) {
 }
 
 function t_text(text, emojidata, acct) {
-  var i = 0
-  var emoji = ''
-  var replacetext = ''
+  let i = 0
+  let emoji = ''
+  let replacetext = ''
 
   if (getConfig(1, 'joke') == 1) {
     text = text.replace(/。/g, '、それと便座カバー。')
@@ -147,7 +147,7 @@ function t_text(text, emojidata, acct) {
   }
 
   if (!getConfig(1, 'no_custom_emoji') && emojidata) {
-    var emoji_mode = getConfig(1, 'no_gif') ? 'static_url' : 'url'
+    const emoji_mode = getConfig(1, 'no_gif') ? 'static_url' : 'url'
     while (emojidata[i]) {
       emoji = ':' + emojidata[i]['shortcode'] + ':'
 
@@ -158,10 +158,10 @@ function t_text(text, emojidata, acct) {
   }
 
   // インスタンスのドメインが送られてきた場合はチェックを行うが、送られてこなかった場合は今まで通り全て読み仮名通す
-  var isYomigana = true
+  let isYomigana = true
   if (acct) {
     acct = acct.split('@')
-    var t_domain = (acct[1] ? acct[1] : inst).toLowerCase()
+    const t_domain = (acct[1] ? acct[1] : inst).toLowerCase()
     isYomigana = instance_config[t_domain] ? !!instance_config[t_domain]['yomigana'] : false
   }
 
@@ -185,7 +185,7 @@ function hide(id) {
 }
 
 function openURL(url) {
-  var mode = getConfig(1, 'url_open')
+  const mode = getConfig(1, 'url_open')
   if (ons.isWebView() && !mode) {
     SafariViewController.isAvailable(available => {
       if (available) {
@@ -220,12 +220,12 @@ function openURL(url) {
 }
 
 function getParam(val) {
-  var data_s = {}
-  var data = val.substring(1).split('&')
-  var data_ex
-  var value
-  var key
-  for (var i = 0; i < data.length; i++) {
+  const data_s = {}
+  const data = val.substring(1).split('&')
+  let data_ex
+  let value
+  let key
+  for (let i = 0; i < data.length; i++) {
     data_ex = value = key = null
     data_ex = data[i].search(/=/)
     value = data[i].slice(data[i].indexOf('=', 0) + 1)

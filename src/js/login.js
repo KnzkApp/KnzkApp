@@ -1,6 +1,6 @@
 function login_open(domain) {
-  var os_name
-  var uri = 'knzkapp://login/token'
+  let os_name
+  let uri = 'knzkapp://login/token'
   if (platform === 'ios') {
     os_name = 'iOS'
   } else if (platform === 'android') {
@@ -27,11 +27,11 @@ function login_open(domain) {
       }
     })
     .then(json => {
-      var inst_domain_tmp = domain.toLowerCase()
+      const inst_domain_tmp = domain.toLowerCase()
       localStorage.setItem('knzkapp_tmp_domain', inst_domain_tmp)
       localStorage.setItem('knzkapp_tmp_cid', json['client_id'])
       localStorage.setItem('knzkapp_tmp_scr', json['client_secret'])
-      var url =
+      const url =
         'https://' +
         inst_domain_tmp +
         '/oauth/authorize?response_type=code&redirect_uri=' +
@@ -85,7 +85,7 @@ function login_open_c(domain) {
 }
 
 function login_callback(code) {
-  var uri = 'knzkapp://login/token'
+  let uri = 'knzkapp://login/token'
   if (platform === 'ios') {
     SafariViewController.isAvailable(available => {
       if (available) {
@@ -140,8 +140,8 @@ function login_callback(code) {
               }
             })
             .then(json_acct => {
-              var confdata = JSON.parse(localStorage.getItem('knzkapp_conf_mastodon_timeline'))
-              var acct = json_acct['username'] + '@' + inst
+              const confdata = JSON.parse(localStorage.getItem('knzkapp_conf_mastodon_timeline'))
+              const acct = json_acct['username'] + '@' + inst
 
               confdata[acct] = {
                 config: ['home', 'local', 'public', 'local_media', 'public_media'],
@@ -180,8 +180,8 @@ function login_callback(code) {
 
 function debug_login() {
   show('now_loading')
-  var inst_domain = elemId('login_debug_domain').value
-  var token = elemId('login_debug_token').value
+  const inst_domain = elemId('login_debug_domain').value
+  const token = elemId('login_debug_token').value
 
   Fetch('https://' + inst_domain + '/api/v1/accounts/verify_credentials', {
     headers: { Authorization: 'Bearer ' + token }
@@ -215,9 +215,9 @@ function debug_login() {
 }
 
 function account_change(id) {
-  var list = JSON.parse(localStorage.getItem('knzkapp_account_list'))
+  const list = JSON.parse(localStorage.getItem('knzkapp_account_list'))
 
-  var now = {
+  const now = {
     username: now_userconf['username'],
     userid: now_userconf['id'],
     login_token: now_userconf['token'],
@@ -225,8 +225,8 @@ function account_change(id) {
   }
 
   if (id) {
-    var nid = parseInt(id)
-    var next_account = list[nid]
+    const nid = parseInt(id)
+    const next_account = list[nid]
     list.splice(nid, 1)
     Fetch('https://' + next_account['login_domain'] + '/api/v1/accounts/verify_credentials', {
       headers: { Authorization: 'Bearer ' + next_account['login_token'] }
@@ -267,8 +267,8 @@ function account_del(id) {
     })
     .then(e => {
       if (e === 1) {
-        var list = JSON.parse(localStorage.getItem('knzkapp_account_list'))
-        var nid = parseInt(id)
+        const list = JSON.parse(localStorage.getItem('knzkapp_account_list'))
+        const nid = parseInt(id)
         list.splice(nid, 1)
         localStorage.setItem('knzkapp_account_list', JSON.stringify(list))
         elemId('splitter-menu').close()
@@ -278,9 +278,9 @@ function account_del(id) {
 }
 
 function account_list() {
-  var list = JSON.parse(localStorage.getItem('knzkapp_account_list'))
-  var reshtml = ''
-  var i = 0
+  const list = JSON.parse(localStorage.getItem('knzkapp_account_list'))
+  let reshtml = ''
+  let i = 0
   while (list[i]) {
     reshtml +=
       '<ons-list-item>\n' +
@@ -305,7 +305,7 @@ function account_list() {
 }
 
 function open_addaccount() {
-  var menu = elemId('splitter-menu')
+  const menu = elemId('splitter-menu')
   document
     .querySelector('#navigator')
     .bringPageTop('login.html', { animation: 'slide' })
@@ -333,9 +333,9 @@ function clearAllAccount() {
 }
 
 function changeAccountInLoad() {
-  var list = JSON.parse(localStorage.getItem('knzkapp_account_list'))
-  var buttons = []
-  var i = 0
+  const list = JSON.parse(localStorage.getItem('knzkapp_account_list'))
+  const buttons = []
+  let i = 0
   while (list[i]) {
     buttons.push({ label: list[i]['username'] + '@' + list[i]['login_domain'] })
     i++

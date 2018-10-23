@@ -98,7 +98,7 @@ function init() {
                   $('#ep_bt_custom').addClass('invisible')
                 } else {
                   $('#ep_bt_custom').removeClass('invisible')
-                  var elist = elemId('emoji_list_popover')
+                  const elist = elemId('emoji_list_popover')
                   elist.innerHTML = 'loading now...'
                   elist.dataset.isload = 'no'
                 }
@@ -187,9 +187,9 @@ function init() {
 
 function initevent() {
   $(document).on('click', 'div.toot_content', event => {
-    var obj = event.currentTarget
-    var id = 0
-    var button = event.target.className
+    const obj = event.currentTarget
+    let id = 0
+    const button = event.target.className
     if (
       obj.className.indexOf('toot_content') !== -1 &&
       button.indexOf('button') === -1 &&
@@ -206,11 +206,11 @@ function initevent() {
     }
   })
   $(document).on('click', 'a', event => {
-    var word = ''
+    let word = ''
     event.stopPropagation()
     event.preventDefault()
-    var obj = event.target
-    var url = obj.getAttribute('href')
+    let obj = event.target
+    let url = obj.getAttribute('href')
     if (!url) {
       obj = event.currentTarget
       url = obj.getAttribute('href')
@@ -259,8 +259,8 @@ function initevent() {
         if (getConfig(1, 'theme')) elemId('theme_' + getConfig(1, 'theme')).selected = true
         if (getConfig(1, 'url_open')) elemId('url_' + getConfig(1, 'url_open')).selected = true
         hide('now_loading')
-        var conf = $("[id^='conf-']")
-        var i = 0
+        const conf = $("[id^='conf-']")
+        let i = 0
         while (conf[i]) {
           if (parseInt(getConfig(1, conf[i].id.replace('conf-', '')))) {
             if (conf[i].dataset.config === 'range') conf[i].value = getConfig(1, conf[i].id.replace('conf-', ''))
@@ -300,8 +300,8 @@ function initevent() {
     if (event.enterPage.id === 'config_collapse-page') {
       show('now_loading')
       setTimeout(() => {
-        var conf = $("[id^='conf-col-']")
-        var i = 0
+        const conf = $("[id^='conf-col-']")
+        let i = 0
         while (conf[i]) {
           if (parseInt(getConfig(2, conf[i].id.replace('conf-col-', '')))) conf[i].checked = true
           i++
@@ -337,7 +337,7 @@ function initevent() {
       if (tmp_post_reply) {
         if (tmp_text_pre) {
           var post_reply_acct = tmp_text_pre
-          var post_reply_acct_s = post_reply_acct.split(' ')
+          const post_reply_acct_s = post_reply_acct.split(' ')
           if (post_reply_acct_s[1]) {
             post_reply_acct = post_reply_acct_s[0] + ' ...'
           }
@@ -421,7 +421,7 @@ function initevent() {
 
   document.addEventListener('prechange', event => {
     if (event.carousel) {
-      var label = [elemId('tutorial_next_label'), elemId('tutorial_next_icon')]
+      const label = [elemId('tutorial_next_label'), elemId('tutorial_next_icon')]
       if (event.activeIndex === 3) {
         label[0].innerText = i18next.t('tutorial.done')
         label[1].className = 'ons-icon fa-check fa'
@@ -477,7 +477,7 @@ function initevent() {
     })
 
     document.addEventListener('swiperight', event => {
-      var h = event.gesture.startEvent.center.clientX
+      const h = event.gesture.startEvent.center.clientX
       if (h <= 20 || elemId('splitter-menu').isOpen) {
         fn.open()
       } else if (pageid === 'home') TL_prev()
@@ -487,14 +487,12 @@ function initevent() {
   if (ons.isWebView()) {
     try {
       FCMPlugin.onTokenRefresh(token => {
-        if (FCM_token) var t = true
         FCM_token = token
-        if (!t) changeNotification(true)
+        changeNotification(true)
       })
       FCMPlugin.getToken(token => {
-        if (FCM_token) var t = true
         FCM_token = token
-        if (!t) changeNotification(true)
+        changeNotification(true)
       })
     } catch (e) {
       ons.notification.alert(dialog_i18n('err_fcm', 1), {
@@ -520,7 +518,7 @@ function home_autoevent() {
   setTimeout(() => {
     if (home_auto_event) {
       updateTLtrack()
-      var storedata = TlStoreData_pre[inst][timeline_now_tab]
+      const storedata = TlStoreData_pre[inst][timeline_now_tab]
       if (storedata !== '' && home_auto_mode) {
         if (getConfig(1, 'chatmode')) elemTimeline().innerHTML = elemTimeline().innerHTML + storedata
         else {
@@ -541,8 +539,8 @@ function isOpenAnyDialogs() {
   const actionSheet = document.querySelectorAll('ons-action-sheet')
   const popover = document.querySelectorAll('ons-popover')
   const dialog = document.querySelectorAll('ons-alert-dialog')
-  var openedDialog
-  var i = 0
+  let openedDialog
+  let i = 0
   if (dialog) {
     while (dialog[i]) {
       if (dialog[i].visible && dialog[i].cancelable) {
@@ -598,10 +596,10 @@ function BackButtonEvent() {
   }
 }
 
-var button = ''
-var quiet = ''
-var light = ''
-var large_quiet = ''
+let button = ''
+let quiet = ''
+let light = ''
+let large_quiet = ''
 var platform = ''
 
 const init_d = () =>
@@ -666,14 +664,14 @@ ons.ready(() => {
 // https://press.monaca.io/atsushi/248
 function handleOpenURL(url) {
   setTimeout(() => {
-    var strValue = url
+    let strValue = url
     strValue = strValue.replace('knzkapp://', '')
-    var mode = strValue.split('/')
+    const mode = strValue.split('/')
     if (mode[0] === 'login') {
-      var token = getParam(mode[1].replace('token', ''))
+      const token = getParam(mode[1].replace('token', ''))
       login_callback(token['code'])
     } else if (mode[0] === 'user') {
-      var user = mode[1].replace('open?', '')
+      const user = mode[1].replace('open?', '')
       show_account_name(user)
     }
   }, 100)

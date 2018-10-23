@@ -1,5 +1,5 @@
 function startWatching() {
-  var heartbeat
+  let heartbeat
   try {
     if (Notification_ws) {
       try {
@@ -14,11 +14,11 @@ function startWatching() {
       Notification_ws.onopen = () => {
         heartbeat = setInterval(() => Notification_ws.send('p'), 10000) //ping
         Notification_ws.onmessage = message => {
-          var ws_resdata = JSON.parse(message.data)
+          let ws_resdata = JSON.parse(message.data)
 
           if (ws_resdata.event === 'notification') {
             ws_resdata = JSON.parse(ws_resdata.payload)
-            var filter = getConfig(
+            const filter = getConfig(
               5,
               (ws_resdata['account']['acct'].indexOf('@') === -1
                 ? ws_resdata['account']['acct'] + '@' + inst
@@ -33,7 +33,7 @@ function startWatching() {
               )
             ) {
               Notification_num++
-              var noti = $('.noti_unread')
+              const noti = $('.noti_unread')
               noti.removeClass('invisible')
               noti.html(Notification_num)
             }
@@ -49,16 +49,16 @@ function startWatching() {
 }
 
 function resetLabel() {
-  var noti = $('.noti_unread')
+  const noti = $('.noti_unread')
   noti.addClass('invisible')
   Notification_num = 0
 }
 
 function changeNotification(force) {
-  var config = LoadNotificationConfig()
+  const config = LoadNotificationConfig()
   if (FCM_token) {
-    var conf = $("[id^='noti-mute-']")
-    var i = 0
+    const conf = $("[id^='noti-mute-']")
+    let i = 0
     if (conf[0]) {
       while (conf[i]) {
         config['option']['notification']['all'][conf[i].id.replace('noti-mute-', '')] = conf[i].checked
@@ -75,7 +75,7 @@ function changeNotification(force) {
       is_unregister = 'un'
     }
     config['option']['notification']['user'] = getConfig(5, 'notification')
-    var formdata = {
+    const formdata = {
       server_key: push_default_serverKey,
       instance_url: inst,
       access_token: now_userconf['token'],
@@ -85,8 +85,8 @@ function changeNotification(force) {
       username: now_userconf['username'],
       app_name: document.querySelector('meta[name=version]').content
     }
-    var body = ''
-    for (var key in formdata) {
+    let body = ''
+    for (const key in formdata) {
       body += key + '=' + encodeURIComponent(formdata[key]) + '&'
     }
     body += 'd=' + new Date().getTime()
@@ -139,7 +139,7 @@ function addKeyWord() {
           })
           return
         }
-        var config = LoadNotificationConfig()['option']
+        const config = LoadNotificationConfig()['option']
         config['keyword'].unshift(repcom)
         SetNotificationConfig('option', config)
         renderKeyWordList()
@@ -148,9 +148,9 @@ function addKeyWord() {
 }
 
 function renderKeyWordList() {
-  var config = LoadNotificationConfig()
-  var reshtml = ''
-  var i = 0
+  const config = LoadNotificationConfig()
+  let reshtml = ''
+  let i = 0
   while (config['option']['keyword'][i]) {
     reshtml +=
       "<ons-list-item onclick='KeyWord_del(" +
@@ -166,8 +166,8 @@ function renderKeyWordList() {
 }
 
 function KeyWord_del(id) {
-  var config = LoadNotificationConfig()['option']
-  var nid = parseInt(id)
+  const config = LoadNotificationConfig()['option']
+  const nid = parseInt(id)
   config['keyword'].splice(nid, 1)
   SetNotificationConfig('option', config)
   showtoast('del_ok')
@@ -175,21 +175,21 @@ function KeyWord_del(id) {
 }
 
 function LoadNotificationConfig() {
-  var name = now_userconf['username'] + '@' + inst
+  const name = now_userconf['username'] + '@' + inst
   return getConfig(4, name)
 }
 
 function SetNotificationConfig(n, data) {
-  var name = now_userconf['username'] + '@' + inst
-  var config = getConfig(4, name)
+  const name = now_userconf['username'] + '@' + inst
+  const config = getConfig(4, name)
   config[n] = data
   setConfig(4, name, config)
 }
 
 function setNotificationServer() {
   show('now_loading')
-  var name = now_userconf['username'] + '@' + inst
-  var config = LoadNotificationConfig()
+  const name = now_userconf['username'] + '@' + inst
+  let config = LoadNotificationConfig()
   if (!config)
     config = {
       option: { notification: { all: {}, user: {} }, keyword: [] },
@@ -231,8 +231,8 @@ function setNotificationServer() {
 function initNotificationPage() {
   setTimeout(() => {
     elemId('noti-mode').checked = !!LoadNotificationConfig()['is_running']
-    var conf = $("[id^='noti-mute-']")
-    var i = 0
+    const conf = $("[id^='noti-mute-']")
+    let i = 0
     while (conf[i]) {
       conf[i].checked = LoadNotificationConfig()['option']['notification']['all'][conf[i].id.replace('noti-mute-', '')]
       i++

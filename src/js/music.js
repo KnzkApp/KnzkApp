@@ -38,9 +38,9 @@ function isPlaying() {
 function generateRadio() {
   const list = elemId('radio_list')
   if (list.innerHTML) return
-  var i = 0
-  var reshtml = ''
-  var BoxData = {}
+  let i = 0
+  let reshtml = ''
+  let BoxData = {}
   while (radios[i]) {
     BoxData = {
       num: i,

@@ -4,7 +4,7 @@ function SearchKey() {
 
 function SearchLoad() {
   loadNav('olist_nav.html')
-  var q = escapeHTML(elemId('nav-search').value)
+  const q = escapeHTML(elemId('nav-search').value)
   Fetch('https://' + inst + '/api/v2/search?q=' + q, {
     headers: {
       'content-type': 'application/json',
@@ -20,8 +20,8 @@ function SearchLoad() {
       }
     })
     .then(json => {
-      var reshtml = ''
-      var i = 0
+      let reshtml = ''
+      let i = 0
       elemId('olist_nav_title').innerHTML = i18next.t('search.result', {
         text: q
       })

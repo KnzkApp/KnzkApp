@@ -1,5 +1,5 @@
 function searchEmoji(query) {
-  var els = document.getElementsByClassName('emoji_button')
+  const els = document.getElementsByClassName('emoji_button')
 
   if (query) {
     $('.emoji_cate_box').addClass('ep_search_box')
@@ -20,19 +20,19 @@ function searchEmoji(query) {
 }
 
 function renderEmoji(emojiobj) {
-  var i = 0
-  var reshtml = ''
-  var list = {}
-  var key
-  var search = ''
-  var s = 0
+  let i = 0
+  const reshtml = ''
+  const list = {}
+  let key
+  let search = ''
+  let s = 0
   if (emojiobj.dataset.isload === 'no') {
     emojiobj.dataset.isload = 'yes'
-    var xhr = new XMLHttpRequest()
+    const xhr = new XMLHttpRequest()
     xhr.onreadystatechange = function() {
       if (this.readyState === 4) {
         emoji_search = []
-        var json = JSON.parse(this.responseText)
+        const json = JSON.parse(this.responseText)
         while (json[i]) {
           if (!list[json[i]['category']]) list[json[i]['category']] = ''
           search = ''
@@ -74,7 +74,7 @@ function returnEmojiCategoryStr(id) {
 }
 
 function displayEmojiList(emojiobj, list, dispnum) {
-  var locale = {
+  const locale = {
     Custom: returnEmojiCategoryStr('Custom'),
     People: returnEmojiCategoryStr('People'),
     Nature: returnEmojiCategoryStr('Nature'),
@@ -85,10 +85,10 @@ function displayEmojiList(emojiobj, list, dispnum) {
     Symbols: returnEmojiCategoryStr('Symbols'),
     Flags: returnEmojiCategoryStr('Flags')
   }
-  var key
-  var i = 0
-  var ok = false
-  var pre = ''
+  let key
+  let i = 0
+  let ok = false
+  let pre = ''
   for (key in list) {
     if (dispnum === i) {
       if (dispnum !== 0) pre = emojiobj.innerHTML
@@ -116,10 +116,10 @@ function displayEmojiList(emojiobj, list, dispnum) {
 }
 
 function renderCustomEmoji(emojiobj) {
-  var i = 0
-  var customreshtml = ''
-  var search_a_custom = []
-  var load = elemId('emoji_loading')
+  let i = 0
+  let customreshtml = ''
+  const search_a_custom = []
+  const load = elemId('emoji_loading')
   if (!getConfig(1, 'no_custom_emoji')) {
     Fetch('https://' + inst + '/api/v1/custom_emojis', {
       headers: { 'content-type': 'application/json' },
@@ -135,7 +135,7 @@ function renderCustomEmoji(emojiobj) {
       })
       .then(json => {
         if (json) {
-          var emoji_mode = getConfig(1, 'no_gif') ? 'static_url' : 'url'
+          const emoji_mode = getConfig(1, 'no_gif') ? 'static_url' : 'url'
           i = 0
           while (json[i]) {
             search_a_custom.push(json[i]['shortcode'])

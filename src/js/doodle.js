@@ -9,8 +9,8 @@ function openDoodle(simple) {
     sketcher.adaptiveStroke = false
     doodle_mode = 'draw'
     doodle_old_color = '#000000'
-    var canvas = elemId('mySketcher')
-    var ctx = canvas.getContext('2d')
+    const canvas = elemId('mySketcher')
+    const ctx = canvas.getContext('2d')
     ctx.fillStyle = 'rgb(255,255,255)'
     ctx.fillRect(0, 0, canvas.width, canvas.height)
   })
@@ -27,8 +27,8 @@ function Doodle_reset() {
         sketcher.clear()
         hidePopover('doodle_popover')
 
-        var canvas = elemId('mySketcher')
-        var ctx = canvas.getContext('2d')
+        const canvas = elemId('mySketcher')
+        const ctx = canvas.getContext('2d')
         ctx.fillStyle = 'rgb(255,255,255)'
         ctx.fillRect(0, 0, canvas.width, canvas.height)
       }
@@ -57,9 +57,9 @@ function closeDoodle(force) {
 }
 
 function dataURLtoFile(dataURI) {
-  var binary = atob(dataURI.split(',')[1])
-  var array = []
-  for (var i = 0; i < binary.length; i++) array.push(binary.charCodeAt(i))
+  const binary = atob(dataURI.split(',')[1])
+  const array = []
+  for (let i = 0; i < binary.length; i++) array.push(binary.charCodeAt(i))
   return new Blob([new Uint8Array(array)], { type: 'image/png' })
 }
 
@@ -72,14 +72,14 @@ function Doodle_upload() {
     .then(e => {
       if (e === 1) {
         closeDoodle(true)
-        var dataUrl = sketcher.toImage()
+        const dataUrl = sketcher.toImage()
         up_file_suc(null, dataURLtoFile(dataUrl))
       }
     })
 }
 
 function Doodle_config(id) {
-  var mode = elemId('doodle_' + id).checked
+  const mode = elemId('doodle_' + id).checked
   if (platform === 'ios') {
     if (mode == true) {
       Doodle_changeType(id, false)
@@ -96,8 +96,8 @@ function Doodle_config(id) {
 }
 
 function Doodle_changeMode() {
-  var now = doodle_mode
-  var button = elemId('doodle_pen_bt')
+  const now = doodle_mode
+  const button = elemId('doodle_pen_bt')
   if (now === 'draw') {
     sketcher.color = doodle_old_color
     button.className = 'ons-icon fa-bath fa'
@@ -125,7 +125,7 @@ function Doodle_changeType(id, mode) {
 }
 
 function show_colorpicker() {
-  var nav = document.querySelector('#navigator')
+  const nav = document.querySelector('#navigator')
   $.when(nav.bringPageTop('color.html')).done(() => {
     $('#color-default').addClass('invisible')
   })

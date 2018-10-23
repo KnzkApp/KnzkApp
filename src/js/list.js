@@ -4,7 +4,7 @@ function list(mode, title, more_load, mode_toot, navmode) {
       list_n(mode, title, more_load, mode_toot, true)
     })
   } else {
-    var menu = elemId('splitter-menu')
+    const menu = elemId('splitter-menu')
     $.when(
       document
         .querySelector('#navigator')
@@ -17,12 +17,12 @@ function list(mode, title, more_load, mode_toot, navmode) {
 }
 
 function list_n(mode, title, more_load, mode_toot, navmode) {
-  var i = 0
-  var reshtml = ''
-  var get = ''
-  var pin
-  var id_title
-  var id_main
+  let i = 0
+  let reshtml = ''
+  let get = ''
+  let pin
+  let id_title
+  let id_main
   if (more_load) {
     if (!list_old_id[0]) {
       setTimeout(() => {
@@ -47,11 +47,11 @@ function list_n(mode, title, more_load, mode_toot, navmode) {
     mode = elemId(id_main).mode
     mode_toot = elemId(id_main).mode_toot
   }
-  var xhr = new XMLHttpRequest()
+  const xhr = new XMLHttpRequest()
   xhr.onreadystatechange = () => {
     if (xhr.readyState === 4) {
       if (xhr.status === 200 || xhr.status === 304) {
-        var json = JSON.parse(xhr.responseText)
+        const json = JSON.parse(xhr.responseText)
         if (more_load) reshtml = elemId(id_main).innerHTML
         else elemId(id_title).innerHTML = title.match(/\./i) ? i18next.t(title) : title
 
@@ -134,9 +134,9 @@ function followreq(id, mode) {
 }
 
 function LoadrepStatus() {
-  var i = 0
-  var reshtml = ''
-  var repstatus = []
+  let i = 0
+  let reshtml = ''
+  let repstatus = []
   loadNav('olist_nav.html')
   Fetch('https://' + inst + '/api/v1/reports', {
     headers: {
@@ -219,8 +219,8 @@ function renderListsCollection(isEdit) {
     })
     .then(json => {
       if (json) {
-        var i = 0
-        var buf = ''
+        let i = 0
+        let buf = ''
         while (json[i]) {
           if (isEdit) {
             if (!json[i]['display_name']) json[i]['display_name'] = json[i]['username']
@@ -276,7 +276,7 @@ function addAccountToList(id, isDelete) {
 }
 
 function SearchListLoad() {
-  var q = escapeHTML(elemId('List-search').value)
+  const q = escapeHTML(elemId('List-search').value)
   Fetch('https://' + inst + '/api/v1/accounts/search?q=' + q + '&resolve=false&following=true', {
     headers: {
       'content-type': 'application/json',
@@ -292,8 +292,8 @@ function SearchListLoad() {
       }
     })
     .then(json => {
-      var reshtml = ''
-      var i = 0
+      let reshtml = ''
+      let i = 0
       reshtml +=
         '<ons-list-item tappable="" onclick="closeSearchList()" class="list-item">' +
         '<label class="left music-item list-item__left"><i class="list-item__icon list-item--chevron__icon ons-icon fa-times fa fa-fw"></i></label>' +
@@ -343,7 +343,7 @@ function listMore(id, title, is_page) {
 }
 
 function editList(id, title, is_page) {
-  var method = id ? 'PUT' : 'POST'
+  const method = id ? 'PUT' : 'POST'
   ons.notification
     .prompt(dialog_i18n('editlist', 1), {
       title: dialog_i18n('editlist'),
