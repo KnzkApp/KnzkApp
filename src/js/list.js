@@ -17,11 +17,12 @@ function list(mode, title, more_load, mode_toot, navmode) {
 }
 
 function list_n(mode, title, more_load, mode_toot, navmode) {
-  var i = 0,
-    reshtml = '',
-    get = '',
-    pin
-  var id_title, id_main
+  var i = 0
+  var reshtml = ''
+  var get = ''
+  var pin
+  var id_title
+  var id_main
   if (more_load) {
     if (!list_old_id[0]) {
       setTimeout(() => {
@@ -133,9 +134,9 @@ function followreq(id, mode) {
 }
 
 function LoadrepStatus() {
-  var i = 0,
-    reshtml = '',
-    repstatus = []
+  var i = 0
+  var reshtml = ''
+  var repstatus = []
   loadNav('olist_nav.html')
   Fetch('https://' + inst + '/api/v1/reports', {
     headers: {
@@ -153,9 +154,9 @@ function LoadrepStatus() {
     })
     .then(json => {
       json.sort((a, b) => {
-        let t = 0,
-          a_ = parseInt(a.id),
-          b_ = parseInt(b.id)
+        let t = 0
+        let a_ = parseInt(a.id)
+        let b_ = parseInt(b.id)
 
         if (a_ < b_) t = 1
         if (a_ > b_) t = -1
@@ -218,8 +219,8 @@ function renderListsCollection(isEdit) {
     })
     .then(json => {
       if (json) {
-        var i = 0,
-          buf = ''
+        var i = 0
+        var buf = ''
         while (json[i]) {
           if (isEdit) {
             if (!json[i]['display_name']) json[i]['display_name'] = json[i]['username']
@@ -291,8 +292,8 @@ function SearchListLoad() {
       }
     })
     .then(json => {
-      var reshtml = '',
-        i = 0
+      var reshtml = ''
+      var i = 0
       reshtml +=
         '<ons-list-item tappable="" onclick="closeSearchList()" class="list-item">' +
         '<label class="left music-item list-item__left"><i class="list-item__icon list-item--chevron__icon ons-icon fa-times fa fa-fw"></i></label>' +

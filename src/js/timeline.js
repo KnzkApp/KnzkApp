@@ -35,11 +35,11 @@ function reset_alert() {
 }
 
 function showAlert(reload, more_load) {
-  var get = '',
-    reshtml = '',
-    i = 0,
-    alert_text = '',
-    e = 0
+  var get = ''
+  var reshtml = ''
+  var i = 0
+  var alert_text = ''
+  var e = 0
   if (reload) {
     get = '?since_id=' + alert_new_id
   }
@@ -252,8 +252,8 @@ function initTimeline() {
       openNavigation('timeline-base', true)
     }, 0)
 
-  var dial = getConfig(1, 'dial'),
-    icon
+  var dial = getConfig(1, 'dial')
+  var icon
   if (dial && dial != 'change') {
     $('#dial_main').removeClass('invisible')
     if (dial === 'toot') icon = 'fa-pencil'
@@ -262,17 +262,19 @@ function initTimeline() {
     elemId('dial-icon').className = 'ons-icon fa ' + icon
   } else if (dial) {
     $('#dial_TL').removeClass('invisible')
-    var bufhtml = '',
-      icons = {
-        home: 'fa fa-fw fa-home',
-        local: 'fa fa-fw fa-users',
-        federated: 'fa fa-fw fa-globe',
-        local_media: 'fa fa-fw fa-picture-o',
-        federated_media: 'ons-icon zmdi zmdi-collection-image-o',
-        hashtag: 'fa fa-fw fa-hashtag',
-        list: 'fa fa-fw fa-bars',
-        plus_local: '+ローカル'
-      }
+    var bufhtml = ''
+
+    var icons = {
+      home: 'fa fa-fw fa-home',
+      local: 'fa fa-fw fa-users',
+      federated: 'fa fa-fw fa-globe',
+      local_media: 'fa fa-fw fa-picture-o',
+      federated_media: 'ons-icon zmdi zmdi-collection-image-o',
+      hashtag: 'fa fa-fw fa-hashtag',
+      list: 'fa fa-fw fa-bars',
+      plus_local: '+ローカル'
+    }
+
     i = 0
     bufhtml +=
       '<div onclick="openTL(\'alert_nav\')"><span>' +
@@ -296,21 +298,24 @@ function initTimeline() {
 
 function generateTimelineButton() {
   if (!window.isLargeMode) return
-  const list = elemId('timeline-list'),
-    icons = {
-      home: 'fa fa-fw fa-home',
-      local: 'fa fa-fw fa-users',
-      federated: 'fa fa-fw fa-globe',
-      local_media: 'fa fa-fw fa-picture-o',
-      federated_media: 'ons-icon zmdi zmdi-collection-image-o',
-      hashtag: 'fa fa-fw fa-hashtag',
-      list: 'fa fa-fw fa-bars',
-      plus_local: '+ローカル'
-    }
+  const list = elemId('timeline-list')
+
+  const icons = {
+    home: 'fa fa-fw fa-home',
+    local: 'fa fa-fw fa-users',
+    federated: 'fa fa-fw fa-globe',
+    local_media: 'fa fa-fw fa-picture-o',
+    federated_media: 'ons-icon zmdi zmdi-collection-image-o',
+    hashtag: 'fa fa-fw fa-hashtag',
+    list: 'fa fa-fw fa-bars',
+    plus_local: '+ローカル'
+  }
+
   //if (list.innerHTML) return;
-  var i = 0,
-    reshtml = '',
-    BoxData = {}
+  var i = 0
+
+  var reshtml = ''
+  var BoxData = {}
   while (i <= timeline_config.length - 1) {
     BoxData = {
       num: i,
@@ -331,10 +336,10 @@ function generateTimelineButton() {
  * @param clear_load 一旦破棄してやり直すときtrue
  */
 function showTL(mode, reload, more_load, clear_load) {
-  var tlmode = '',
-    i = 0,
-    reshtml = '',
-    n
+  var tlmode = ''
+  var i = 0
+  var reshtml = ''
+  var n
   if (!mode) mode = now_TL
   if (clear_load) {
     closeAllws()
@@ -481,8 +486,8 @@ function startWebSocket(mode, reload, more_load) {
   else if (mode.match(/list:/i)) ws_mode = 'list&list=' + mode.replace('list:', '')
 
   if (!reload && !more_load) {
-    var instance_ws = inst,
-      now_tab = timeline_now_tab
+    var instance_ws = inst
+    var now_tab = timeline_now_tab
     var ws_url = 'wss://' + inst + '/api/v1/streaming/?access_token=' + now_userconf['token'] + '&stream=' + ws_mode
     if (TL_websocket[now_tab]) {
       try {
@@ -595,8 +600,8 @@ function cacheTL(loc = timeline_now_tab) {
   if (pageid === 'home') {
     var posts = Array.from(elemTimeline(loc).children)
     if (posts.length > 30) {
-      var cutData = posts.slice(24),
-        i = 0
+      var cutData = posts.slice(24)
+      var i = 0
       toot_old_id = posts[24].id.replace('post_', '')
       while (cutData[i]) {
         posts[24 + i].parentNode.removeChild(posts[24 + i])
@@ -611,9 +616,9 @@ function elemTimeline(number = timeline_now_tab) {
 }
 
 function showTagTL(tag, more_load) {
-  var i = 0,
-    reshtml = '',
-    get = ''
+  var i = 0
+  var reshtml = ''
+  var get = ''
   if (!tag) tag = tag_str
   else tag_str = tag
   if (more_load) {
@@ -663,9 +668,9 @@ function showTagTL(tag, more_load) {
 }
 
 function showAccountTL(id, more_load, mode = '', reload) {
-  var i = 0,
-    reshtml = '',
-    get = ''
+  var i = 0
+  var reshtml = ''
+  var get = ''
   acct_mode = mode
   if (more_load) {
     more_load.value = 'Loading now...'
@@ -825,15 +830,16 @@ function setTLheadcolor(mode) {
 }
 
 function TLident(mode) {
-  var name,
-    locale = {
-      home: 'home',
-      local: 'local',
-      public: 'federated',
-      local_media: 'local_media',
-      public_media: 'federated_media',
-      plus_local: '+ローカル'
-    }
+  var name
+
+  var locale = {
+    home: 'home',
+    local: 'local',
+    public: 'federated',
+    local_media: 'local_media',
+    public_media: 'federated_media',
+    plus_local: '+ローカル'
+  }
 
   if (!mode) return
   if (locale[mode]) name = locale[mode]
@@ -844,8 +850,8 @@ function TLident(mode) {
 }
 
 function TLname(mode) {
-  var n = TLident(mode),
-    text
+  var n = TLident(mode)
+  var text
   if (n === 'hashtag') text = mode
   else if (n === 'list') text = 'list:' + timeline_list_names['' + mode.split(':')[1]]
   else text = i18next.t('timeline.' + n)
@@ -912,11 +918,11 @@ function initph(mode) {
 }
 
 function initTLConf() {
-  var i = 0,
-    reshtml = '',
-    dw = '',
-    up = '',
-    ch = ''
+  var i = 0
+  var reshtml = ''
+  var dw = ''
+  var up = ''
+  var ch = ''
 
   while (timeline_config[i]) {
     dw =
@@ -1049,10 +1055,10 @@ function AddTLConfig() {
     return
   }
 
-  var buttons = [i18next.t('actionsheet.editTL.hashtag'), i18next.t('actionsheet.editTL.list')],
-    defaultTL = ['home', 'local', 'public', 'local_media', 'public_media'],
-    defaultTLdisable = [null, null],
-    i = 0
+  var buttons = [i18next.t('actionsheet.editTL.hashtag'), i18next.t('actionsheet.editTL.list')]
+  var defaultTL = ['home', 'local', 'public', 'local_media', 'public_media']
+  var defaultTLdisable = [null, null]
+  var i = 0
   while (defaultTL[i]) {
     if (timeline_config.indexOf(defaultTL[i]) === -1) {
       buttons.push(TLname(defaultTL[i]))

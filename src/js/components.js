@@ -63,9 +63,10 @@ function load(page) {
 
 function loadNav(page, mode, move_mode) {
   //mode: アニメーション方法, splitter: スライドメニューを使用しているか, move_mode: ページを読み込むモード
-  var option = mode === 'up' ? { animation: 'lift' } : { animation: 'slide' },
-    menu = elemId('splitter-menu'),
-    nav = document.querySelector('#navigator')
+  var option = mode === 'up' ? { animation: 'lift' } : { animation: 'slide' }
+
+  var menu = elemId('splitter-menu')
+  var nav = document.querySelector('#navigator')
 
   var onLoad = () => {
     if (!window.isLargeMode) menu.close()
@@ -119,9 +120,9 @@ function showtoast(id) {
 }
 
 function t_text(text, emojidata, acct) {
-  var i = 0,
-    emoji = '',
-    replacetext = ''
+  var i = 0
+  var emoji = ''
+  var replacetext = ''
 
   if (getConfig(1, 'joke') == 1) {
     text = text.replace(/。/g, '、それと便座カバー。')
@@ -219,11 +220,11 @@ function openURL(url) {
 }
 
 function getParam(val) {
-  var data_s = {},
-    data = val.substring(1).split('&'),
-    data_ex,
-    value,
-    key
+  var data_s = {}
+  var data = val.substring(1).split('&')
+  var data_ex
+  var value
+  var key
   for (var i = 0; i < data.length; i++) {
     data_ex = value = key = null
     data_ex = data[i].search(/=/)

@@ -187,8 +187,8 @@ function init() {
 
 function initevent() {
   $(document).on('click', 'div.toot_content', event => {
-    var obj = event.currentTarget,
-      id = 0
+    var obj = event.currentTarget
+    var id = 0
     var button = event.target.className
     if (
       obj.className.indexOf('toot_content') !== -1 &&
@@ -259,8 +259,8 @@ function initevent() {
         if (getConfig(1, 'theme')) elemId('theme_' + getConfig(1, 'theme')).selected = true
         if (getConfig(1, 'url_open')) elemId('url_' + getConfig(1, 'url_open')).selected = true
         hide('now_loading')
-        var conf = $("[id^='conf-']"),
-          i = 0
+        var conf = $("[id^='conf-']")
+        var i = 0
         while (conf[i]) {
           if (parseInt(getConfig(1, conf[i].id.replace('conf-', '')))) {
             if (conf[i].dataset.config === 'range') conf[i].value = getConfig(1, conf[i].id.replace('conf-', ''))
@@ -300,8 +300,8 @@ function initevent() {
     if (event.enterPage.id === 'config_collapse-page') {
       show('now_loading')
       setTimeout(() => {
-        var conf = $("[id^='conf-col-']"),
-          i = 0
+        var conf = $("[id^='conf-col-']")
+        var i = 0
         while (conf[i]) {
           if (parseInt(getConfig(2, conf[i].id.replace('conf-col-', '')))) conf[i].checked = true
           i++
@@ -336,8 +336,8 @@ function initevent() {
 
       if (tmp_post_reply) {
         if (tmp_text_pre) {
-          var post_reply_acct = tmp_text_pre,
-            post_reply_acct_s = post_reply_acct.split(' ')
+          var post_reply_acct = tmp_text_pre
+          var post_reply_acct_s = post_reply_acct.split(' ')
           if (post_reply_acct_s[1]) {
             post_reply_acct = post_reply_acct_s[0] + ' ...'
           }
@@ -538,11 +538,11 @@ function home_autoevent() {
 }
 
 function isOpenAnyDialogs() {
-  const actionSheet = document.querySelectorAll('ons-action-sheet'),
-    popover = document.querySelectorAll('ons-popover'),
-    dialog = document.querySelectorAll('ons-alert-dialog')
-  var openedDialog,
-    i = 0
+  const actionSheet = document.querySelectorAll('ons-action-sheet')
+  const popover = document.querySelectorAll('ons-popover')
+  const dialog = document.querySelectorAll('ons-alert-dialog')
+  var openedDialog
+  var i = 0
   if (dialog) {
     while (dialog[i]) {
       if (dialog[i].visible && dialog[i].cancelable) {
@@ -598,11 +598,11 @@ function BackButtonEvent() {
   }
 }
 
-var button = '',
-  quiet = '',
-  light = '',
-  large_quiet = '',
-  platform = ''
+var button = ''
+var quiet = ''
+var light = ''
+var large_quiet = ''
+var platform = ''
 
 const init_d = () =>
   new Promise((resolve, reject) => {

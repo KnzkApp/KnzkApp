@@ -1,6 +1,6 @@
 function LoadBookmark() {
-  var reshtml = '',
-    json = loadBookmark()[inst]
+  var reshtml = ''
+  var json = loadBookmark()[inst]
   loadNav('olist_nav.html')
   if (!instance_config[inst]['glitch_soc']) {
     reshtml += '<div class="toot">\n' + i18next.t('bookmark.note', { interpolation: { escapeValue: false } }) + '</div>'
@@ -38,8 +38,8 @@ function renderBookmark_glitch() {
     })
     .then(json => {
       if (json) {
-        var i = 0,
-          reshtml = ''
+        var i = 0
+        var reshtml = ''
 
         while (json[i]) {
           reshtml += toot_card(json[i], 'full', null)

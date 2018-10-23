@@ -47,8 +47,8 @@ function up_file(simple, isInput) {
       if (card.length + files.length > 4) {
         showtoast('maximum-media')
       } else {
-        var i = 0,
-          images = []
+        var i = 0
+        var images = []
         while (files[i]) {
           var reader = new FileReader()
           reader.onload = fileData => {
@@ -291,10 +291,10 @@ function bbcodegen(force) {
   var large = elemId('bbcode_large').value
   var spin = parseInt(elemId('bbcode_spin').value)
   var pulse = parseInt(elemId('bbcode_pulse').value)
-  var pre = '',
-    suf = '',
-    buf = '',
-    value = ''
+  var pre = ''
+  var suf = ''
+  var buf = ''
+  var value = ''
   if (spin > 9 && !force) {
     ons.notification
       .confirm(dialog_i18n('warning_spin', 1), {
@@ -378,13 +378,15 @@ function bbcode_color(color) {
 }
 
 function post(id, option, simple) {
-  var media_id = Array(),
-    i,
-    simple_id = '',
-    optiondata = {
-      status: elemId(id).value,
-      visibility: option.visibility
-    }
+  var media_id = Array()
+  var i
+  var simple_id = ''
+
+  var optiondata = {
+    status: elemId(id).value,
+    visibility: option.visibility
+  }
+
   if (simple) {
     simple_close()
     show('post_now')

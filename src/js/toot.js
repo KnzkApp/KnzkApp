@@ -1,14 +1,14 @@
 function toot_card(toot, mode, note, toot_light, page) {
-  var piccard = '',
-    p = 0,
-    alert_text = '',
-    content = ''
-  var visibility_icon,
-    can_col,
-    is_col = '',
-    col_bt = '',
-    col_pic = '',
-    col_bg_st = ''
+  var piccard = ''
+  var p = 0
+  var alert_text = ''
+  var content = ''
+  var visibility_icon
+  var can_col
+  var is_col = ''
+  var col_bt = ''
+  var col_pic = ''
+  var col_bg_st = ''
   var BoxData = {}
   if (!toot) {
     return ''
@@ -269,12 +269,12 @@ function toot_card(toot, mode, note, toot_light, page) {
 }
 
 function toot_col(id) {
-  var toot = $('.tootcontent_' + id),
-    i = 0,
-    mode,
-    toot_b = document.getElementsByClassName('post_' + id),
-    obj = $('.toot_col_' + id),
-    tb = $('.tb_group_' + id)
+  var toot = $('.tootcontent_' + id)
+  var i = 0
+  var mode
+  var toot_b = document.getElementsByClassName('post_' + id)
+  var obj = $('.toot_col_' + id)
+  var tb = $('.tb_group_' + id)
   var small_class = document.querySelectorAll('.post_' + id + ' .toot-card-right')
   mode = small_class[0].className.indexOf('toot-small') != -1
   while (toot[i]) {
@@ -333,10 +333,10 @@ function vote_item(q, obj, id) {
 }
 
 function toot_action(action_mode) {
-  var toot,
-    i = 0,
-    url = '',
-    a_mode
+  var toot
+  var i = 0
+  var url = ''
+  var a_mode
   id = event.srcElement.dataset.id
   if (action_mode === 0) {
     toot = $('.tootfav_' + id)
@@ -422,8 +422,8 @@ function open_cw(id, btobj) {
 
 function reply(id) {
   tmp_text_pre = ''
-  var acct = '',
-    i = 0
+  var acct = ''
+  var i = 0
   if (tl_postdata[id]['mentions'][0]) {
     while (tl_postdata[id]['mentions'][i]) {
       if (tl_postdata[id]['mentions'][i]['acct'] !== now_userconf['username']) {
@@ -496,8 +496,8 @@ function pin_set(id) {
 }
 
 function more(id) {
-  var url = tl_postdata[id]['url'],
-    acct = tl_postdata[id]['account']['acct']
+  var url = tl_postdata[id]['url']
+  var acct = tl_postdata[id]['account']['acct']
   more_status_id = '' + id
   more_acct_id = tl_postdata[id]['account']['id']
   if (now_userconf['id'] === tl_postdata[id]['account']['id']) {
@@ -642,8 +642,8 @@ function delete_post() {
             }
           })
           .then(json => {
-            var card = $('.post_' + more_status_id),
-              i = 0
+            var card = $('.post_' + more_status_id)
+            var i = 0
             while (card[i]) {
               card[i].parentNode.removeChild(card[i])
               i++
@@ -663,9 +663,9 @@ function delete_post() {
 }
 
 function show_post(id, near, near_domain, origin_id) {
-  var reshtml = '',
-    d = 0,
-    i = 0
+  var reshtml = ''
+  var d = 0
+  var i = 0
   loadNav('showtoot.html')
   Fetch('https://' + inst + '//api/v1/statuses/' + id, {
     headers: {

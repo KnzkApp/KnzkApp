@@ -1,8 +1,8 @@
 function createFilter() {
-  var conf = $("[id^='filter_']"),
-    i = 0,
-    config = {},
-    id = escapeHTML(elemId('userid_filter').value).toLowerCase()
+  var conf = $("[id^='filter_']")
+  var i = 0
+  var config = {}
+  var id = escapeHTML(elemId('userid_filter').value).toLowerCase()
   if (!id) return
   if (id.indexOf('@') === -1) id += '@' + inst
   while (conf[i]) {
@@ -53,8 +53,8 @@ function editFilter(id) {
     .bringPageTop('editFilter.html')
     .then(() => {
       elemId('userid_filter').value = id
-      var conf = $("[id^='filter_']"),
-        i = 0
+      var conf = $("[id^='filter_']")
+      var i = 0
       while (conf[i]) {
         conf[i].checked = config[id][conf[i].id.replace('filter_', '')]
         i++

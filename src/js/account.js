@@ -33,9 +33,9 @@ function show_account(id) {
       account_page_id = json.id
       account_page_acct = json.acct
 
-      var bio_field = '',
-        i = 0,
-        border_style = ''
+      var bio_field = ''
+      var i = 0
+      var border_style = ''
       if (json['fields']) {
         if (json['fields'][0]) {
           while (json['fields'][i]) {

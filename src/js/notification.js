@@ -57,8 +57,8 @@ function resetLabel() {
 function changeNotification(force) {
   var config = LoadNotificationConfig()
   if (FCM_token) {
-    var conf = $("[id^='noti-mute-']"),
-      i = 0
+    var conf = $("[id^='noti-mute-']")
+    var i = 0
     if (conf[0]) {
       while (conf[i]) {
         config['option']['notification']['all'][conf[i].id.replace('noti-mute-', '')] = conf[i].checked
@@ -149,8 +149,8 @@ function addKeyWord() {
 
 function renderKeyWordList() {
   var config = LoadNotificationConfig()
-  var reshtml = '',
-    i = 0
+  var reshtml = ''
+  var i = 0
   while (config['option']['keyword'][i]) {
     reshtml +=
       "<ons-list-item onclick='KeyWord_del(" +
@@ -166,8 +166,8 @@ function renderKeyWordList() {
 }
 
 function KeyWord_del(id) {
-  var config = LoadNotificationConfig()['option'],
-    nid = parseInt(id)
+  var config = LoadNotificationConfig()['option']
+  var nid = parseInt(id)
   config['keyword'].splice(nid, 1)
   SetNotificationConfig('option', config)
   showtoast('del_ok')
@@ -231,8 +231,8 @@ function setNotificationServer() {
 function initNotificationPage() {
   setTimeout(() => {
     elemId('noti-mode').checked = !!LoadNotificationConfig()['is_running']
-    var conf = $("[id^='noti-mute-']"),
-      i = 0
+    var conf = $("[id^='noti-mute-']")
+    var i = 0
     while (conf[i]) {
       conf[i].checked = LoadNotificationConfig()['option']['notification']['all'][conf[i].id.replace('noti-mute-', '')]
       i++

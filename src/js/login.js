@@ -1,6 +1,6 @@
 function login_open(domain) {
-  var os_name,
-    uri = 'knzkapp://login/token'
+  var os_name
+  var uri = 'knzkapp://login/token'
   if (platform === 'ios') {
     os_name = 'iOS'
   } else if (platform === 'android') {
@@ -279,8 +279,8 @@ function account_del(id) {
 
 function account_list() {
   var list = JSON.parse(localStorage.getItem('knzkapp_account_list'))
-  var reshtml = '',
-    i = 0
+  var reshtml = ''
+  var i = 0
   while (list[i]) {
     reshtml +=
       '<ons-list-item>\n' +
@@ -334,8 +334,8 @@ function clearAllAccount() {
 
 function changeAccountInLoad() {
   var list = JSON.parse(localStorage.getItem('knzkapp_account_list'))
-  var buttons = [],
-    i = 0
+  var buttons = []
+  var i = 0
   while (list[i]) {
     buttons.push({ label: list[i]['username'] + '@' + list[i]['login_domain'] })
     i++

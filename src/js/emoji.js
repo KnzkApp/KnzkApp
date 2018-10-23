@@ -20,12 +20,12 @@ function searchEmoji(query) {
 }
 
 function renderEmoji(emojiobj) {
-  var i = 0,
-    reshtml = '',
-    list = {},
-    key,
-    search = '',
-    s = 0
+  var i = 0
+  var reshtml = ''
+  var list = {}
+  var key
+  var search = ''
+  var s = 0
   if (emojiobj.dataset.isload === 'no') {
     emojiobj.dataset.isload = 'yes'
     var xhr = new XMLHttpRequest()
@@ -85,10 +85,10 @@ function displayEmojiList(emojiobj, list, dispnum) {
     Symbols: returnEmojiCategoryStr('Symbols'),
     Flags: returnEmojiCategoryStr('Flags')
   }
-  var key,
-    i = 0,
-    ok = false,
-    pre = ''
+  var key
+  var i = 0
+  var ok = false
+  var pre = ''
   for (key in list) {
     if (dispnum === i) {
       if (dispnum !== 0) pre = emojiobj.innerHTML
@@ -116,10 +116,10 @@ function displayEmojiList(emojiobj, list, dispnum) {
 }
 
 function renderCustomEmoji(emojiobj) {
-  var i = 0,
-    customreshtml = '',
-    search_a_custom = [],
-    load = elemId('emoji_loading')
+  var i = 0
+  var customreshtml = ''
+  var search_a_custom = []
+  var load = elemId('emoji_loading')
   if (!getConfig(1, 'no_custom_emoji')) {
     Fetch('https://' + inst + '/api/v1/custom_emojis', {
       headers: { 'content-type': 'application/json' },

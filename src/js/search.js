@@ -20,8 +20,8 @@ function SearchLoad() {
       }
     })
     .then(json => {
-      var reshtml = '',
-        i = 0
+      var reshtml = ''
+      var i = 0
       elemId('olist_nav_title').innerHTML = i18next.t('search.result', {
         text: q
       })
