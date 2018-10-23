@@ -15,8 +15,7 @@
     "fmt:js": "eslint '**/*.js' --fix",
     "fmt": "npm-run-all fmt:* -s",
     "build": "yarn fmt && yarn lint && gulp build",
-    "monaca:preview": "npm run dev",
-    "dev": "browser-sync start -s www/ --watch --port 8080 --ui-port 8081"
+    "dev": "serve www | gulp watch"
   },
   "cordova": {
     "plugins": {
