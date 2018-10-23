@@ -15,7 +15,7 @@
     "fmt:js": "eslint '**/*.js' --fix",
     "fmt": "npm-run-all fmt:* -s",
     "build": "yarn fmt && yarn lint && gulp build",
-    "dev": "serve www | gulp watch"
+    "dev": "yarn build && serve www | gulp watch"
   },
   "cordova": {
     "plugins": {
