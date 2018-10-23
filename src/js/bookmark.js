@@ -7,7 +7,7 @@ function LoadBookmark() {
   }
   if (!instance_config[inst]['glitch_soc']) {
     renderBookmark(reshtml, json, 0)
-    setTimeout(function() {
+    setTimeout(() => {
       elemId('olist_right').innerHTML =
         '<ons-toolbar-button onclick="clearBookmark()" class="toolbar-button">\n' +
         '<ons-icon icon=\'fa-trash\' class="ons-icon fa-trash fa"></ons-icon>\n' +
@@ -16,7 +16,7 @@ function LoadBookmark() {
   } else if (instance_config[inst]['glitch_soc']) {
     renderBookmark_glitch()
   }
-  setTimeout(function() {
+  setTimeout(() => {
     elemId('olist_nav_title').innerHTML = i18next.t('bookmark.title')
   }, 500)
 }
@@ -29,14 +29,14 @@ function renderBookmark_glitch() {
     },
     method: 'GET'
   })
-    .then(function(response) {
+    .then(response => {
       if (response.ok) {
         return response.json()
       } else {
         throw response
       }
     })
-    .then(function(json) {
+    .then(json => {
       if (json) {
         var i = 0,
           reshtml = ''
@@ -49,14 +49,14 @@ function renderBookmark_glitch() {
         elemId('olist_nav_main').innerHTML = reshtml
       }
     })
-    .catch(function(error) {
+    .catch(error => {
       catchHttpErr('show_bookmark_glitch', error)
     })
 }
 
 function renderBookmark(reshtml, json_bookmark, i) {
   if (!json_bookmark[i]) {
-    setTimeout(function() {
+    setTimeout(() => {
       elemId('olist_nav_main').innerHTML = reshtml
     }, 50)
     return
@@ -68,14 +68,14 @@ function renderBookmark(reshtml, json_bookmark, i) {
     },
     method: 'GET'
   })
-    .then(function(response) {
+    .then(response => {
       if (response.ok) {
         return response.json()
       } else {
         throw response
       }
     })
-    .then(function(json) {
+    .then(json => {
       reshtml += toot_card(json, 'full', null)
       if (json_bookmark[i + 1]) {
         //次ある
@@ -132,20 +132,20 @@ function changeBookmark(id) {
       },
       method: 'POST'
     })
-      .then(function(response) {
+      .then(response => {
         if (response.ok) {
           return response.json()
         } else {
           throw response
         }
       })
-      .then(function(json) {
+      .then(json => {
         if (json['id']) {
           tl_postdata[json['id']] = json
           showtoast('ok_conf_2')
         }
       })
-      .catch(function(error) {
+      .catch(error => {
         catchHttpErr('bookmark_glitch', error)
       })
   }
@@ -180,7 +180,7 @@ function clearBookmark() {
         }),
         { title: i18next.t('bookmark.clear.title'), modifier: 'material' }
       )
-      .then(function(e) {
+      .then(e => {
         if (e === 1) {
           var bookmark = loadBookmark()
           bookmark[inst] = []
@@ -203,7 +203,7 @@ function clearAllBookmark() {
       modifier: 'material',
       cancelable: true
     })
-    .then(function(e) {
+    .then(e => {
       if (e === 1) {
         var bookmark = {}
         bookmark[inst] = []
@@ -226,14 +226,14 @@ function migration_app2glitch() {
           },
           method: 'POST'
         })
-          .then(function(response) {
+          .then(response => {
             if (response.ok) {
               return response.json()
             } else {
               throw response
             }
           })
-          .then(function(data) {
+          .then(data => {
             var id = json[inst].indexOf('' + data['id'])
             if (!json[inst][id + 1]) {
               json[inst] = []
@@ -241,7 +241,7 @@ function migration_app2glitch() {
               console.log('Complete:app2glitch migration')
             }
           })
-          .catch(function(error) {
+          .catch(error => {
             catchHttpErr('bookmark_app2glitch', error)
           })
         i++

@@ -1,10 +1,8 @@
 function list(mode, title, more_load, mode_toot, navmode) {
   if (navmode === true) {
-    $.when(document.querySelector('#navigator').bringPageTop('olist_nav.html', { animation: 'slide' })).done(
-      function() {
-        list_n(mode, title, more_load, mode_toot, true)
-      }
-    )
+    $.when(document.querySelector('#navigator').bringPageTop('olist_nav.html', { animation: 'slide' })).done(() => {
+      list_n(mode, title, more_load, mode_toot, true)
+    })
   } else {
     var menu = elemId('splitter-menu')
     $.when(
@@ -12,7 +10,7 @@ function list(mode, title, more_load, mode_toot, navmode) {
         .querySelector('#navigator')
         .resetToPage('olist.html', { animation: 'none' })
         .then(menu.close.bind(menu))
-    ).done(function() {
+    ).done(() => {
       list_n(mode, title, more_load, mode_toot)
     })
   }
@@ -26,7 +24,7 @@ function list_n(mode, title, more_load, mode_toot, navmode) {
   var id_title, id_main
   if (more_load) {
     if (!list_old_id[0]) {
-      setTimeout(function() {
+      setTimeout(() => {
         more_load()
       }, 500)
       return
@@ -49,7 +47,7 @@ function list_n(mode, title, more_load, mode_toot, navmode) {
     mode_toot = elemId(id_main).mode_toot
   }
   var xhr = new XMLHttpRequest()
-  xhr.onreadystatechange = function() {
+  xhr.onreadystatechange = () => {
     if (xhr.readyState === 4) {
       if (xhr.status === 200 || xhr.status === 304) {
         var json = JSON.parse(xhr.responseText)
@@ -99,7 +97,7 @@ function list_n(mode, title, more_load, mode_toot, navmode) {
       } else {
         showtoast('cannot-load')
       }
-      setTimeout(function() {
+      setTimeout(() => {
         if (more_load) more_load()
       }, 500)
     }
@@ -118,18 +116,18 @@ function followreq(id, mode) {
     },
     method: 'POST'
   })
-    .then(function(response) {
+    .then(response => {
       if (response.ok) {
         return response.json()
       } else {
         throw response
       }
     })
-    .then(function(json) {
+    .then(json => {
       showtoast('ok_conf_2')
       list_n('follow_requests', 'navigation.follow_req', null, 'acct')
     })
-    .catch(function(error) {
+    .catch(error => {
       catchHttpErr('follow_req', error)
     })
 }
@@ -146,15 +144,15 @@ function LoadrepStatus() {
     },
     method: 'GET'
   })
-    .then(function(response) {
+    .then(response => {
       if (response.ok) {
         return response.json()
       } else {
         throw response
       }
     })
-    .then(function(json) {
-      json.sort(function(a, b) {
+    .then(json => {
+      json.sort((a, b) => {
         let t = 0,
           a_ = parseInt(a.id),
           b_ = parseInt(b.id)
@@ -194,7 +192,7 @@ function LoadrepStatus() {
       elemId('olist_nav_title').innerHTML = i18next.t('navigation.report_status')
       elemId('olist_nav_main').innerHTML = reshtml
     })
-    .catch(function(error) {
+    .catch(error => {
       catchHttpErr('repStatus', error)
     })
 }
@@ -211,14 +209,14 @@ function renderListsCollection(isEdit) {
     },
     method: 'GET'
   })
-    .then(function(response) {
+    .then(response => {
       if (response.ok) {
         return response.json()
       } else {
         throw response
       }
     })
-    .then(function(json) {
+    .then(json => {
       if (json) {
         var i = 0,
           buf = ''
@@ -246,7 +244,7 @@ function renderListsCollection(isEdit) {
         elemId(isEdit ? 'people-list' : 'lists-list').innerHTML = buf
       }
     })
-    .catch(function(error) {
+    .catch(error => {
       catchHttpErr('render_lists', error)
     })
 }
@@ -260,18 +258,18 @@ function addAccountToList(id, isDelete) {
     method: isDelete ? 'DELETE' : 'POST',
     body: JSON.stringify({ account_ids: [id] })
   })
-    .then(function(response) {
+    .then(response => {
       if (response.ok) {
         return response.json()
       } else {
         throw response
       }
     })
-    .then(function(json) {
+    .then(json => {
       showtoast('ok_conf')
       renderListsCollection(editing_id)
     })
-    .catch(function(error) {
+    .catch(error => {
       catchHttpErr('AddToList', error)
     })
 }
@@ -285,14 +283,14 @@ function SearchListLoad() {
     },
     method: 'GET'
   })
-    .then(function(response) {
+    .then(response => {
       if (response.ok) {
         return response.json()
       } else {
         throw response
       }
     })
-    .then(function(json) {
+    .then(json => {
       var reshtml = '',
         i = 0
       reshtml +=
@@ -309,7 +307,7 @@ function SearchListLoad() {
 
       elemId('searchpeople-list').innerHTML = reshtml
     })
-    .catch(function(error) {
+    .catch(error => {
       catchHttpErr('searchList', error)
     })
 }
@@ -335,7 +333,7 @@ function listMore(id, title, is_page) {
         }
       ]
     })
-    .then(function(index) {
+    .then(index => {
       if (index === 0) editList(id, title, is_page)
       else if (index === 1) renderListsCollection(id)
       else if (index === 2) deleteList(id, title, is_page)
@@ -352,7 +350,7 @@ function editList(id, title, is_page) {
       modifier: 'material',
       cancelable: true
     })
-    .then(function(repcom) {
+    .then(repcom => {
       if (repcom) {
         Fetch('https://' + inst + '/api/v1/lists' + (id ? '/' + id : ''), {
           headers: {
@@ -362,18 +360,18 @@ function editList(id, title, is_page) {
           method: method,
           body: JSON.stringify({ title: repcom })
         })
-          .then(function(response) {
+          .then(response => {
             if (response.ok) {
               return response.json()
             } else {
               throw response
             }
           })
-          .then(function(json) {
+          .then(json => {
             renderListsCollection()
             if (is_page) showList(id, repcom)
           })
-          .catch(function(error) {
+          .catch(error => {
             catchHttpErr('editList', error)
           })
       }
@@ -387,7 +385,7 @@ function deleteList(id, title, is_page) {
       modifier: 'material',
       cancelable: true
     })
-    .then(function(e) {
+    .then(e => {
       if (e === 1) {
         Fetch('https://' + inst + '/api/v1/lists/' + id, {
           headers: {
@@ -396,18 +394,18 @@ function deleteList(id, title, is_page) {
           },
           method: 'DELETE'
         })
-          .then(function(response) {
+          .then(response => {
             if (response.ok) {
               return response.json()
             } else {
               throw response
             }
           })
-          .then(function(json) {
+          .then(json => {
             renderListsCollection()
             if (is_page) BackTab()
           })
-          .catch(function(error) {
+          .catch(error => {
             catchHttpErr('delList', error)
           })
       }
@@ -416,7 +414,7 @@ function deleteList(id, title, is_page) {
 
 function showList(id, title) {
   list('timelines/list/' + id, 'List:' + title, null, 'toot', true)
-  setTimeout(function() {
+  setTimeout(() => {
     elemId('olist_right').innerHTML =
       '<ons-toolbar-button onclick="listMore(\'' +
       id +

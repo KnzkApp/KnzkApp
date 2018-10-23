@@ -3,7 +3,7 @@ function openDoodle(simple) {
   else image_mode = ''
   elemId('navigator').removeAttribute('swipeable')
   if (getConfig(1, 'swipe_menu') == 1) elemId('splitter-menu').removeAttribute('swipeable')
-  $.when(document.querySelector('#navigator').bringPageTop('doodle.html', { animation: 'lift' })).done(function() {
+  $.when(document.querySelector('#navigator').bringPageTop('doodle.html', { animation: 'lift' })).done(() => {
     sketcher = atrament('#mySketcher', window.innerWidth, window.innerHeight - 50)
     sketcher.smoothing = false
     sketcher.adaptiveStroke = false
@@ -22,7 +22,7 @@ function Doodle_reset() {
       title: i18next.t('toot.doodle.reset.title'),
       modifier: 'material'
     })
-    .then(function(e) {
+    .then(e => {
       if (e === 1) {
         sketcher.clear()
         hidePopover('doodle_popover')
@@ -46,7 +46,7 @@ function closeDoodle(force) {
         title: i18next.t('toot.doodle.reset.close'),
         modifier: 'material'
       })
-      .then(function(e) {
+      .then(e => {
         if (e === 1) {
           elemId('navigator').setAttribute('swipeable', '')
           if (getConfig(1, 'swipe_menu') == 1) elemId('splitter-menu').setAttribute('swipeable', '1')
@@ -69,7 +69,7 @@ function Doodle_upload() {
       title: i18next.t('toot.doodle.upload.title'),
       modifier: 'material'
     })
-    .then(function(e) {
+    .then(e => {
       if (e === 1) {
         closeDoodle(true)
         var dataUrl = sketcher.toImage()
@@ -126,7 +126,7 @@ function Doodle_changeType(id, mode) {
 
 function show_colorpicker() {
   var nav = document.querySelector('#navigator')
-  $.when(nav.bringPageTop('color.html')).done(function() {
+  $.when(nav.bringPageTop('color.html')).done(() => {
     $('#color-default').addClass('invisible')
   })
 }

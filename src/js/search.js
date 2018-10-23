@@ -12,14 +12,14 @@ function SearchLoad() {
     },
     method: 'GET'
   })
-    .then(function(response) {
+    .then(response => {
       if (response.ok) {
         return response.json()
       } else {
         throw response
       }
     })
-    .then(function(json) {
+    .then(json => {
       var reshtml = '',
         i = 0
       elemId('olist_nav_title').innerHTML = i18next.t('search.result', {
@@ -62,7 +62,7 @@ function SearchLoad() {
 
       elemId('olist_nav_main').innerHTML = reshtml
     })
-    .catch(function(error) {
+    .catch(error => {
       catchHttpErr('search', error)
     })
 }

@@ -1,14 +1,14 @@
-var showPopover = function(target, id) {
+var showPopover = (target, id) => {
   elemId(id).show(target)
 }
 
-var hidePopover = function(id) {
+var hidePopover = id => {
   elemId(id).hide()
 }
 
 window.fn = {}
 
-window.fn.open = function(force) {
+window.fn.open = force => {
   if (!force && window.isLargeMode) return
 
   const menu = elemId('splitter-menu')
@@ -17,7 +17,7 @@ window.fn.open = function(force) {
   $('[data-i18n]').localize()
 }
 
-window.fn.close = function(force) {
+window.fn.close = force => {
   if (!force && window.isLargeMode) return
   elemId('splitter-menu').close()
   $('[data-i18n]').localize()
@@ -28,7 +28,7 @@ function checkLargeWindow() {
   if (window.isLargeMode) {
     const mask = document.querySelector('ons-splitter-mask')
     fn.open(true)
-    setTimeout(function() {
+    setTimeout(() => {
       if (mask) mask.parentNode.removeChild(mask)
     }, 0)
   } else {
@@ -67,9 +67,9 @@ function loadNav(page, mode, move_mode) {
     menu = elemId('splitter-menu'),
     nav = document.querySelector('#navigator')
 
-  var onLoad = function() {
+  var onLoad = () => {
     if (!window.isLargeMode) menu.close()
-    setTimeout(function() {
+    setTimeout(() => {
       $('[data-i18n]').localize()
     }, 0)
   }
@@ -112,7 +112,7 @@ function opendial() {
 
 function showtoast(id) {
   elemId(id).show()
-  setTimeout(function() {
+  setTimeout(() => {
     //3秒くらい
     elemId(id).hide()
   }, 2000)
@@ -186,13 +186,13 @@ function hide(id) {
 function openURL(url) {
   var mode = getConfig(1, 'url_open')
   if (ons.isWebView() && !mode) {
-    SafariViewController.isAvailable(function(available) {
+    SafariViewController.isAvailable(available => {
       if (available) {
         SafariViewController.show(
           {
             url: url
           },
-          function(result) {
+          result => {
             if (result.event === 'opened') {
               console.log('opened')
             } else if (result.event === 'loaded') {
@@ -201,7 +201,7 @@ function openURL(url) {
               console.log('closed')
             }
           },
-          function(msg) {
+          msg => {
             console.log('openURL[' + url + ']: ' + msg)
           }
         )

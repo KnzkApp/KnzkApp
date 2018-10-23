@@ -11,9 +11,9 @@ function startWatching() {
       Notification_ws = new WebSocket(
         'wss://' + inst + '/api/v1/streaming/?access_token=' + now_userconf['token'] + '&stream=user&u=1'
       )
-      Notification_ws.onopen = function() {
+      Notification_ws.onopen = () => {
         heartbeat = setInterval(() => Notification_ws.send('p'), 10000) //ping
-        Notification_ws.onmessage = function(message) {
+        Notification_ws.onmessage = message => {
           var ws_resdata = JSON.parse(message.data)
 
           if (ws_resdata.event === 'notification') {
@@ -39,7 +39,7 @@ function startWatching() {
             }
           }
         }
-        Notification_ws.onclose = function() {
+        Notification_ws.onclose = () => {
           clearInterval(heartbeat)
           startWatching()
         }
@@ -98,18 +98,18 @@ function changeNotification(force) {
       method: 'POST',
       body: body
     })
-      .then(function(response) {
+      .then(response => {
         if (response.ok) {
           return response.json()
         } else {
           throw response
         }
       })
-      .then(function(json) {
+      .then(json => {
         SetNotificationConfig('is_running', is_unregister ? 0 : 1)
         if (conf[0]) showtoast('ok_conf')
       })
-      .catch(function(error) {
+      .catch(error => {
         elemId('noti-mode').checked = !!is_unregister
         catchHttpErr('register_notification', error)
       })
@@ -130,7 +130,7 @@ function addKeyWord() {
       modifier: 'material',
       cancelable: true
     })
-    .then(function(repcom) {
+    .then(repcom => {
       if (repcom) {
         if (repcom.length > 30) {
           ons.notification.alert(i18next.t('dialogs_js.keyword_limit'), {
@@ -199,14 +199,14 @@ function setNotificationServer() {
     }
   if (!config['server']) {
     Fetch(push_default_centerURL, { method: 'GET' })
-      .then(function(response) {
+      .then(response => {
         if (response.ok) {
           return response.json()
         } else {
           throw response
         }
       })
-      .then(function(json) {
+      .then(json => {
         if (json[0]) {
           config['server'] = json[0]
           setConfig(4, name, config)
@@ -220,7 +220,7 @@ function setNotificationServer() {
           hide('now_loading')
         }
       })
-      .catch(function(error) {
+      .catch(error => {
         catchHttpErr('setNotificationServer', error)
       })
   } else {
@@ -229,7 +229,7 @@ function setNotificationServer() {
 }
 
 function initNotificationPage() {
-  setTimeout(function() {
+  setTimeout(() => {
     elemId('noti-mode').checked = !!LoadNotificationConfig()['is_running']
     var conf = $("[id^='noti-mute-']"),
       i = 0

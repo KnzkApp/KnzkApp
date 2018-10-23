@@ -57,26 +57,26 @@ function init() {
 
       starting_alert('instance_login')
       Fetch('https://' + inst + '/api/v1/instance')
-        .then(function(response) {
+        .then(response => {
           if (response.ok) {
             return response.json()
           } else {
             throw response
           }
         })
-        .then(function(json) {
+        .then(json => {
           starting_alert('login')
           Fetch('https://' + inst + '/api/v1/accounts/verify_credentials', {
             headers: { Authorization: 'Bearer ' + now_userconf['token'] }
           })
-            .then(function(response) {
+            .then(response => {
               if (response.ok) {
                 return response.json()
               } else {
                 throw response
               }
             })
-            .then(function(json) {
+            .then(json => {
               try {
                 starting_alert('prepare')
                 timeline_config = getConfig(3, 'config')
@@ -108,7 +108,7 @@ function init() {
                 initevent()
                 checkLargeWindow()
 
-                setTimeout(function() {
+                setTimeout(() => {
                   startWatching()
                   initTimeline()
                   migration_app2glitch()
@@ -162,14 +162,14 @@ function init() {
                 getError('Error/init_2', e)
               }
             })
-            .catch(function(error) {
+            .catch(error => {
               catchHttpErr('init_verify_credentials', error)
               showtoast('cannot-connect-API')
               starting_alert('err')
               changeAccountInLoad()
             })
         })
-        .catch(function(error) {
+        .catch(error => {
           catchHttpErr('init_instance', error)
           showtoast('cannot-connect-sv')
           starting_alert('err')
@@ -177,7 +177,7 @@ function init() {
           //hide('starting_screen');
         })
     } else {
-      setTimeout(function() {
+      setTimeout(() => {
         hide('starting_screen')
         document.querySelector('#navigator').resetToPage('login.html')
       }, 500)
@@ -186,7 +186,7 @@ function init() {
 }
 
 function initevent() {
-  $(document).on('click', 'div.toot_content', function(event) {
+  $(document).on('click', 'div.toot_content', event => {
     var obj = event.currentTarget,
       id = 0
     var button = event.target.className
@@ -205,7 +205,7 @@ function initevent() {
       }
     }
   })
-  $(document).on('click', 'a', function(event) {
+  $(document).on('click', 'a', event => {
     var word = ''
     event.stopPropagation()
     event.preventDefault()
@@ -231,13 +231,13 @@ function initevent() {
     return false
   })
 
-  document.addEventListener('postpush', function(event) {
+  document.addEventListener('postpush', event => {
     try {
       $('[data-i18n]').localize()
     } catch (e) {}
     pageid = event.enterPage.id
     if (event.enterPage.id === 'home') {
-      setTimeout(function() {
+      setTimeout(() => {
         elemId('toot_limit_simple').innerHTML = toot_limit
         $('#post_mode_simple').val(default_post_visibility)
         elemId('post_mode_icon_simple').className =
@@ -253,7 +253,7 @@ function initevent() {
 
     if (event.enterPage.id === 'config-page') {
       show('now_loading')
-      setTimeout(function() {
+      setTimeout(() => {
         if (getConfig(1, 'tl_speech')) elemId('tl_speech_' + getConfig(1, 'tl_speech')).selected = true
         if (getConfig(1, 'dial')) elemId('dial_' + getConfig(1, 'dial')).selected = true
         if (getConfig(1, 'theme')) elemId('theme_' + getConfig(1, 'theme')).selected = true
@@ -278,20 +278,20 @@ function initevent() {
       Fetch('https://' + inst + '/api/v1/accounts/verify_credentials', {
         headers: { Authorization: 'Bearer ' + now_userconf['token'] }
       })
-        .then(function(response) {
+        .then(response => {
           if (response.ok) {
             return response.json()
           } else {
             throw response
           }
         })
-        .then(function(json) {
+        .then(json => {
           elemId('userconf-display_name').value = json['display_name']
           elemId('userconf-note').value = json['source']['note']
           elemId('userconf-lock').checked = json['locked']
           hide('now_loading')
         })
-        .catch(function(error) {
+        .catch(error => {
           catchHttpErr('event_userconf-page', error)
           hide('now_loading')
         })
@@ -299,7 +299,7 @@ function initevent() {
 
     if (event.enterPage.id === 'config_collapse-page') {
       show('now_loading')
-      setTimeout(function() {
+      setTimeout(() => {
         var conf = $("[id^='conf-col-']"),
           i = 0
         while (conf[i]) {
@@ -320,7 +320,7 @@ function initevent() {
 
     if (event.enterPage.id === 'login-page') {
       if (now_userconf['token']) {
-        setTimeout(function() {
+        setTimeout(() => {
           elemId('login_left').innerHTML =
             '<ons-toolbar-button onclick="BackTab()" class="toolbar-button">\n' +
             '<ons-icon icon="fa-chevron-left" class="ons-icon fa-chevron-left fa"></ons-icon>\n' +
@@ -382,19 +382,19 @@ function initevent() {
     }
 
     if (event.enterPage.id === 'olist' || event.enterPage.id === 'olist_nav') {
-      event.enterPage.onInfiniteScroll = function(done) {
+      event.enterPage.onInfiniteScroll = done => {
         list_n(null, null, done, null, event.enterPage.id === 'olist_nav')
       }
     }
 
     if (event.enterPage.id === 'showtag-page') {
-      event.enterPage.onInfiniteScroll = function(done) {
+      event.enterPage.onInfiniteScroll = done => {
         showTagTL(null, done)
       }
     }
   })
 
-  document.addEventListener('postpop', function(event) {
+  document.addEventListener('postpop', event => {
     pageid = event.enterPage.id
     if (event.enterPage.id === 'home') {
       home_auto_event = true
@@ -410,7 +410,7 @@ function initevent() {
   if (getConfig(1, 'resume_reload')) {
     document.addEventListener(
       'resume',
-      function() {
+      () => {
         if (pageid === 'home' && !home_auto_event) {
           showTL(null, null, null, true)
         }
@@ -419,7 +419,7 @@ function initevent() {
     )
   }
 
-  document.addEventListener('prechange', function(event) {
+  document.addEventListener('prechange', event => {
     if (event.carousel) {
       var label = [elemId('tutorial_next_label'), elemId('tutorial_next_icon')]
       if (event.activeIndex === 3) {
@@ -436,14 +436,14 @@ function initevent() {
         now_TL = timeline_config[event.index]
         showTL(null, null, null, true)
       } else {
-        setTimeout(function() {
+        setTimeout(() => {
           TL_prev()
         }, 50)
       }
     }
   })
 
-  $(document).on('click', '.timeline', function(event) {
+  $(document).on('click', '.timeline', event => {
     if ($('#navigator').attr('page') === 'home.html') {
       simple_close()
       $('#TLChangeTab').hide()
@@ -452,7 +452,7 @@ function initevent() {
 
   window.addEventListener('keyboardDidHide', () => {
     if (pageid === 'home') {
-      setTimeout(function() {
+      setTimeout(() => {
         if (!isOpenAnyDialogs() && elemId('simple_toot_TL_input').rows === 3) {
           simple_close()
         }
@@ -460,23 +460,23 @@ function initevent() {
     }
   })
 
-  document.addEventListener('postopen', function(event) {
+  document.addEventListener('postopen', event => {
     account_list()
     openNavigation()
   })
 
-  document.addEventListener('preclose', function(event) {
+  document.addEventListener('preclose', event => {
     if (window.isLargeMode) elemId('splitter-menu').open()
   })
 
   if (getConfig(1, 'swipe_menu') != 1) {
-    document.addEventListener('swipeleft', function(event) {
+    document.addEventListener('swipeleft', event => {
       if (elemId('splitter-menu').isOpen) {
         fn.close()
       } else if (pageid === 'home') TL_next()
     })
 
-    document.addEventListener('swiperight', function(event) {
+    document.addEventListener('swiperight', event => {
       var h = event.gesture.startEvent.center.clientX
       if (h <= 20 || elemId('splitter-menu').isOpen) {
         fn.open()
@@ -486,12 +486,12 @@ function initevent() {
 
   if (ons.isWebView()) {
     try {
-      FCMPlugin.onTokenRefresh(function(token) {
+      FCMPlugin.onTokenRefresh(token => {
         if (FCM_token) var t = true
         FCM_token = token
         if (!t) changeNotification(true)
       })
-      FCMPlugin.getToken(function(token) {
+      FCMPlugin.getToken(token => {
         if (FCM_token) var t = true
         FCM_token = token
         if (!t) changeNotification(true)
@@ -507,17 +507,17 @@ function initevent() {
   }
 
   let timer = 0
-  window.onresize = function() {
+  window.onresize = () => {
     if (timer > 0) clearTimeout(timer)
 
-    timer = setTimeout(function() {
+    timer = setTimeout(() => {
       checkLargeWindow()
     }, 500)
   }
 }
 
 function home_autoevent() {
-  setTimeout(function() {
+  setTimeout(() => {
     if (home_auto_event) {
       updateTLtrack()
       var storedata = TlStoreData_pre[inst][timeline_now_tab]
@@ -626,7 +626,7 @@ const init_d = () =>
   })
 
 ons.disableAutoStyling()
-ons.ready(function() {
+ons.ready(() => {
   init_d().then(i18n_init().then(ConfigSetup().then(init())))
   if (ons.platform.isAndroid()) ons.setDefaultDeviceBackButtonListener(BackButtonEvent)
   if (is_debug) {
@@ -637,14 +637,14 @@ ons.ready(function() {
     if (getConfig(1, 'SendLog') === '') setConfig(1, 'SendLog', '0')
   } else {
     if (getConfig(1, 'SendLog') === '') {
-      setTimeout(function() {
+      setTimeout(() => {
         ons.notification
           .confirm(dialog_i18n('log', 1), {
             title: dialog_i18n('log'),
             modifier: 'material',
             buttonLabels: [i18next.t('dialogs_js.log.no'), i18next.t('dialogs_js.log.yes')]
           })
-          .then(function(e) {
+          .then(e => {
             if (e === 1) {
               setConfig(1, 'SendLog', '1')
               Raven.config(sentryID, {
@@ -665,7 +665,7 @@ ons.ready(function() {
 
 // https://press.monaca.io/atsushi/248
 function handleOpenURL(url) {
-  setTimeout(function() {
+  setTimeout(() => {
     var strValue = url
     strValue = strValue.replace('knzkapp://', '')
     var mode = strValue.split('/')

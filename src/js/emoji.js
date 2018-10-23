@@ -6,7 +6,7 @@ function searchEmoji(query) {
     $('.emoji_button:not(.invisible)').addClass('invisible')
     $('.ep_cate_title').addClass('invisible')
     $('#ep_search_result_title').removeClass('invisible')
-    emoji_search.filter(function(value, index, array) {
+    emoji_search.filter((value, index, array) => {
       if (value.indexOf(query) !== -1) {
         els[index].className = 'emoji_button button button--quiet'
       }
@@ -109,7 +109,7 @@ function displayEmojiList(emojiobj, list, dispnum) {
     }
   }
   if (ok)
-    setTimeout(function() {
+    setTimeout(() => {
       displayEmojiList(emojiobj, list, dispnum + 1)
     }, 1000)
   else renderCustomEmoji(emojiobj)
@@ -125,7 +125,7 @@ function renderCustomEmoji(emojiobj) {
       headers: { 'content-type': 'application/json' },
       method: 'GET'
     })
-      .then(function(response) {
+      .then(response => {
         if (response.ok) {
           return response.json()
         } else {
@@ -133,7 +133,7 @@ function renderCustomEmoji(emojiobj) {
           $('#toot_emoji_bt').addClass('invisible')
         }
       })
-      .then(function(json) {
+      .then(json => {
         if (json) {
           var emoji_mode = getConfig(1, 'no_gif') ? 'static_url' : 'url'
           i = 0

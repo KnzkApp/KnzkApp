@@ -51,7 +51,7 @@ function editFilter(id) {
   document
     .querySelector('#navigator')
     .bringPageTop('editFilter.html')
-    .then(function() {
+    .then(() => {
       elemId('userid_filter').value = id
       var conf = $("[id^='filter_']"),
         i = 0

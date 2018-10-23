@@ -21,14 +21,14 @@ function show_account(id) {
     },
     method: 'GET'
   })
-    .then(function(response) {
+    .then(response => {
       if (response.ok) {
         return response.json()
       } else {
         throw response
       }
     })
-    .then(function(json) {
+    .then(json => {
       acctdata['acct'][json['id']] = json
       account_page_id = json.id
       account_page_acct = json.acct
@@ -103,7 +103,7 @@ function show_account(id) {
         elemId('userpage-hint').innerHTML = "<span class='note'>" + i18next.t('account.note') + '</span>'
       }
     })
-    .catch(function(error) {
+    .catch(error => {
       catchHttpErr('show_account', error)
     })
 
@@ -114,14 +114,14 @@ function show_account(id) {
     },
     method: 'GET'
   })
-    .then(function(response) {
+    .then(response => {
       if (response.ok) {
         return response.json()
       } else {
         throw response
       }
     })
-    .then(function(json) {
+    .then(json => {
       acctdata['rs'][id] = json
 
       elemId('userpage-follower-badge').className = json[0]['followed_by'] === true ? 'userpage-follower' : 'invisible'
@@ -143,7 +143,7 @@ function show_account(id) {
         elemId('userpage-follow-button').className = 'userpage-button follow-active ons-icon fa-hourglass fa'
       elemId('userpage-followreq-badge').className = json[0]['requested'] === true ? 'userpage-follower' : 'invisible'
     })
-    .catch(function(error) {
+    .catch(error => {
       catchHttpErr('relationships', error)
     })
 }
@@ -168,20 +168,20 @@ function account_state_action(id, mode) {
     },
     method: 'POST'
   })
-    .then(function(response) {
+    .then(response => {
       if (response.ok) {
         return response.json()
       } else {
         throw response
       }
     })
-    .then(function(json) {
+    .then(json => {
       if (mode !== 'follow') showtoast('ok_conf_2')
-      setTimeout(function() {
+      setTimeout(() => {
         show_account(id)
       }, 500)
     })
-    .catch(function(error) {
+    .catch(error => {
       catchHttpErr('state_action', error)
     })
 }
@@ -201,7 +201,7 @@ function account_action(id) {
           }
         ]
       })
-      .then(function(index) {
+      .then(index => {
         if (index === 0) openURL(acctdata['acct'][id]['url'])
         else if (index === 1) copy(acctdata['acct'][id]['url'])
         else if (index === 2) OpenQR('@' + account_page_acct.split('@')[0] + '@' + inst)
@@ -232,7 +232,7 @@ function account_action(id) {
         cancelable: true,
         buttons: button_arr
       })
-      .then(function(index) {
+      .then(index => {
         if (index === 0) post_pre('@' + account_page_acct)
         else if (index === 1) openURL(acctdata['acct'][id]['url'])
         else if (index === 2) copy(acctdata['acct'][id]['url'])
@@ -259,14 +259,14 @@ function show_account_name(username) {
     },
     method: 'GET'
   })
-    .then(function(response) {
+    .then(response => {
       if (response.ok) {
         return response.json()
       } else {
         throw response
       }
     })
-    .then(function(json) {
+    .then(json => {
       if (json) {
         var user = json['accounts'][0]
         if (user) {
@@ -284,7 +284,7 @@ function show_account_name(username) {
         }
       }
     })
-    .catch(function(error) {
+    .catch(error => {
       catchHttpErr('show_account_username', error)
     })
 }
@@ -298,7 +298,7 @@ function OpenQR(user) {
   document
     .querySelector('#navigator')
     .bringPageTop('qrcode.html')
-    .then(function() {
+    .then(() => {
       elemId('qrimg').src =
         'http://chart.googleapis.com/chart?cht=qr&chs=200x200&choe=UTF-8&chl=https%3A%2F%2Fopenapp.nzws.me%2Fopen.html%3F' +
         encodeURIComponent(user)
@@ -319,18 +319,18 @@ function update_userdata() {
       locked: elemId('userconf-lock').checked
     })
   })
-    .then(function(response) {
+    .then(response => {
       if (response.ok) {
         return response.json()
       } else {
         throw response
       }
     })
-    .then(function(json) {
+    .then(json => {
       showtoast('ok_conf')
       BackTab()
     })
-    .catch(function(error) {
+    .catch(error => {
       catchHttpErr('update_userdata', error)
     })
 }

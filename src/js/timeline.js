@@ -5,7 +5,7 @@ function reset_alert() {
       modifier: 'material',
       cancelable: true
     })
-    .then(function(e) {
+    .then(e => {
       if (e === 1) {
         Fetch('https://' + inst + '/api/v1/notifications/clear', {
           headers: {
@@ -14,20 +14,20 @@ function reset_alert() {
           },
           method: 'POST'
         })
-          .then(function(response) {
+          .then(response => {
             if (response.ok) {
               return response.json()
             } else {
               throw response
             }
           })
-          .then(function(json) {
+          .then(json => {
             showtoast('ok-clear-alert')
             showAlert()
             alert_old_id = 0
             alert_new_id = 0
           })
-          .catch(function(error) {
+          .catch(error => {
             catchHttpErr('clear_notification', error)
           })
       }
@@ -55,7 +55,7 @@ function showAlert(reload, more_load) {
     },
     method: 'GET'
   })
-    .then(function(response) {
+    .then(response => {
       if (response.ok) {
         if (more_load) more_load.className = 'invisible'
         return response.json()
@@ -63,7 +63,7 @@ function showAlert(reload, more_load) {
         throw response
       }
     })
-    .then(function(json) {
+    .then(json => {
       if (json[i]) {
         resetLabel()
         displayTime('update')
@@ -212,13 +212,13 @@ function openTL(mode) {
   if (mode === 'alert') {
     load('alert.html')
     showAlert()
-    setTimeout(function() {
+    setTimeout(() => {
       initph('alert')
     }, 200)
   } else if (mode === 'alert_nav') {
     loadNav('alert.html')
     showAlert()
-    setTimeout(function() {
+    setTimeout(() => {
       elemId('alert_button').innerHTML =
         '<ons-toolbar-button onclick="BackTab()" class="toolbar-button">\n' +
         '<ons-icon icon="fa-chevron-left" class="ons-icon fa-chevron-left fa"></ons-icon>' +
@@ -230,7 +230,7 @@ function openTL(mode) {
   } else {
     closeAllws()
     load('home.html')
-    setTimeout(function() {
+    setTimeout(() => {
       initTimeline()
       elemId('home-icon').src = user_icon
       document
@@ -248,7 +248,7 @@ function initTimeline() {
   elemId('home_title').innerHTML = TLname(timeline_config[timeline_now_tab])
   showTL(null, null, null, true)
   if (window.isLargeMode)
-    setTimeout(function() {
+    setTimeout(() => {
       openNavigation('timeline-base', true)
     }, 0)
 
@@ -389,14 +389,14 @@ function showTL(mode, reload, more_load, clear_load) {
       },
       method: 'GET'
     })
-      .then(function(response) {
+      .then(response => {
         if (response.ok) {
           return response.json()
         } else {
           throw response
         }
       })
-      .then(function(json) {
+      .then(json => {
         if (!more_load) {
           while (timeline_config[i]) {
             try {
@@ -448,7 +448,7 @@ function showTL(mode, reload, more_load, clear_load) {
           if (!more_load && mode !== last_load_TL && !getConfig(1, 'chatmode')) {
             var tl = document.querySelector('#TL' + timeline_now_tab + '_main')
 
-            tl.onInfiniteScroll = function(done) {
+            tl.onInfiniteScroll = done => {
               showTL(null, null, done)
             }
           }
@@ -491,11 +491,11 @@ function startWebSocket(mode, reload, more_load) {
       TL_websocket[now_tab] = null
     }
     TL_websocket[now_tab] = new WebSocket(ws_url)
-    TL_websocket[now_tab].onopen = function() {
+    TL_websocket[now_tab].onopen = () => {
       ws_leavePage = false
       var heartbeat = setInterval(() => TL_websocket[now_tab].send('p'), 10000) //ping
       var ws_now_url = TL_websocket[now_tab].url
-      TL_websocket[now_tab].onmessage = function(message) {
+      TL_websocket[now_tab].onmessage = message => {
         displayTime('update')
         if (instance_ws !== inst || timeline_now_tab !== now_tab || ws_now_url !== ws_url) {
           console.warn('エラー:Websocketが切断されていません')
@@ -573,7 +573,7 @@ function startWebSocket(mode, reload, more_load) {
         }
       }
 
-      TL_websocket[now_tab].onclose = function() {
+      TL_websocket[now_tab].onclose = () => {
         clearInterval(heartbeat)
         if (instance_ws === inst && timeline_now_tab === now_tab && ws_now_url === ws_url && !ws_leavePage) {
           console.log('reconnect:websocket')
@@ -585,7 +585,7 @@ function startWebSocket(mode, reload, more_load) {
       }
     }
 
-    TL_websocket[now_tab].onerror = function() {
+    TL_websocket[now_tab].onerror = () => {
       console.warn('err')
     }
   }
@@ -630,7 +630,7 @@ function showTagTL(tag, more_load) {
     },
     method: 'GET'
   })
-    .then(function(response) {
+    .then(response => {
       if (response.ok) {
         if (more_load) more_load.className = 'invisible'
         return response.json()
@@ -638,7 +638,7 @@ function showTagTL(tag, more_load) {
         throw response
       }
     })
-    .then(function(json) {
+    .then(json => {
       if (json) {
         if (more_load) {
           reshtml = elemId('tag_main').innerHTML
@@ -657,7 +657,7 @@ function showTagTL(tag, more_load) {
         return true
       }
     })
-    .catch(function(error) {
+    .catch(error => {
       catchHttpErr('show_account', error)
     })
 }
@@ -697,7 +697,7 @@ function showAccountTL(id, more_load, mode = '', reload) {
     },
     method: 'GET'
   })
-    .then(function(response) {
+    .then(response => {
       if (response.ok) {
         if (more_load) more_load.className = 'invisible'
         return response.json()
@@ -705,7 +705,7 @@ function showAccountTL(id, more_load, mode = '', reload) {
         throw response
       }
     })
-    .then(function(json) {
+    .then(json => {
       if (json) {
         if (more_load) {
           reshtml = elemId('account_toot').innerHTML
@@ -743,7 +743,7 @@ function showAccountTL(id, more_load, mode = '', reload) {
         return true
       }
     })
-    .catch(function(error) {
+    .catch(error => {
       catchHttpErr('show_account_TL', error)
     })
 }
@@ -776,8 +776,8 @@ function TL_change_menu(mode) {
     closeAllws()
     elemId('navigator')
       .resetToPage('home.html', { animation: 'none' })
-      .then(function() {
-        setTimeout(function() {
+      .then(() => {
+        setTimeout(() => {
           elemId('tl_tabs').setActiveTab(mode)
         }, 10)
       })
@@ -860,7 +860,7 @@ function initph(mode) {
 
   try {
     var ph_alert = elemId(id)
-    ph_alert.addEventListener('changestate', function(event) {
+    ph_alert.addEventListener('changestate', event => {
       var message = ''
 
       switch (event.state) {
@@ -883,7 +883,7 @@ function initph(mode) {
   }
   if (mode === 'TL') {
     try {
-      ph_alert.onAction = function(done) {
+      ph_alert.onAction = done => {
         console.log('reload')
         showAlert(done)
       }
@@ -892,7 +892,7 @@ function initph(mode) {
     }
   } else if (mode === 'acct') {
     try {
-      ph_alert.onAction = function(done) {
+      ph_alert.onAction = done => {
         console.log('reload')
         showAccountTL(account_page_id, null, acct_mode, done)
       }
@@ -901,7 +901,7 @@ function initph(mode) {
     }
   } else {
     try {
-      ph_alert.onAction = function(done) {
+      ph_alert.onAction = done => {
         console.log('reload')
         showAlert(done)
       }
@@ -1071,7 +1071,7 @@ function AddTLConfig() {
       cancelable: true,
       buttons: buttons
     })
-    .then(function(index) {
+    .then(index => {
       if (index === 0) addHashtag()
       else if (index === 1)
         ons.notification.alert(dialog_i18n('list_note', 1), {
@@ -1105,7 +1105,7 @@ function editTLConfigOption(id) {
       cancelable: true,
       buttons: buttons
     })
-    .then(function(index) {
+    .then(index => {
       if (index === 0) editTLConfD(id)
       else if (index === 1) editTLdel(id)
     })
@@ -1118,7 +1118,7 @@ function addHashtag() {
       modifier: 'material',
       cancelable: true
     })
-    .then(function(repcom) {
+    .then(repcom => {
       if (repcom) {
         editTLConfAdd('hashtag:' + escapeHTML(repcom))
         initTLConf()
@@ -1133,7 +1133,7 @@ function addTagToTimeline(tag) {
       modifier: 'material',
       cancelable: true
     })
-    .then(function(e) {
+    .then(e => {
       if (e === 1) {
         editTLConfAdd('hashtag:' + escapeHTML(tag))
       }

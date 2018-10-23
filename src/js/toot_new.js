@@ -51,7 +51,7 @@ function up_file(simple, isInput) {
           images = []
         while (files[i]) {
           var reader = new FileReader()
-          reader.onload = function(fileData) {
+          reader.onload = fileData => {
             images.push(fileData.target.result.split(',')[1])
             if (files.length === images.length) {
               up_file_suc(images, null)
@@ -79,10 +79,10 @@ function up_file(simple, isInput) {
 function up_file_onSuccess(URI) {
   window.resolveLocalFileSystemURL(
     URI,
-    function(fileEntry) {
-      fileEntry.file(function(file) {
+    fileEntry => {
+      fileEntry.file(file => {
         var reader = new FileReader()
-        reader.onloadend = function(event) {
+        reader.onloadend = event => {
           var blob = new Blob([event.target.result])
           up_file_suc(null, blob)
         }
@@ -122,14 +122,14 @@ function up_file_suc(base64, mode_blob) {
       method: 'POST',
       body: formData
     })
-      .then(function(response) {
+      .then(response => {
         if (response.ok) {
           return response.json()
         } else {
           throw response
         }
       })
-      .then(function(json) {
+      .then(json => {
         if (json) {
           if (json['id'] && json['type'] !== 'unknown') {
             elemId('image_list' + image_mode).innerHTML =
@@ -149,7 +149,7 @@ function up_file_suc(base64, mode_blob) {
         }
         if (arr) up_file_suc(arr)
       })
-      .catch(function(error) {
+      .catch(error => {
         catchHttpErr('media', error)
         hide('now_loading')
       })
@@ -159,7 +159,7 @@ function up_file_suc(base64, mode_blob) {
 function file_del(card) {
   ons.notification
     .confirm(i18next.t('dialogs_js.delete_picture'), { modifier: 'material', cancelable: true })
-    .then(function(e) {
+    .then(e => {
       if (e === 1) {
         card.parentNode.removeChild(card)
       }
@@ -243,7 +243,7 @@ function post_mode(simple) {
       cancelable: true,
       buttons: buttons
     })
-    .then(function(index) {
+    .then(index => {
       if (index == 0) visibility_name = 'public'
       else if (index == 1) visibility_name = 'unlisted'
       else if (index == 2) visibility_name = 'private'
@@ -302,7 +302,7 @@ function bbcodegen(force) {
         modifier: 'material',
         cancelable: true
       })
-      .then(function(e) {
+      .then(e => {
         if (e === 1) {
           bbcodegen(true)
         }
@@ -432,14 +432,14 @@ function post(id, option, simple) {
     method: 'POST',
     body: JSON.stringify(optiondata)
   })
-    .then(function(response) {
+    .then(response => {
       if (response.ok) {
         return response.json()
       } else {
         throw response
       }
     })
-    .then(function(json) {
+    .then(json => {
       if (json['id']) {
         if (simple) {
           $('#simple_toot_form')
@@ -472,7 +472,7 @@ function post(id, option, simple) {
         else hide('now_loading')
       }
     })
-    .catch(function(error) {
+    .catch(error => {
       showtoast('cannot-post')
       console.log(error)
       if (simple) hide('post_now')
@@ -533,7 +533,7 @@ function add_emoji_simple(addtext, mode) {
 }
 
 function paste_simple() {
-  cordova.plugins.clipboard.paste(function(text) {
+  cordova.plugins.clipboard.paste(text => {
     add_emoji_simple(text)
   })
 }

@@ -312,14 +312,14 @@ function vote_item(q, obj, id) {
       item_index: q
     })
   })
-    .then(function(response) {
+    .then(response => {
       if (response.ok) {
         return response.json()
       } else {
         throw response
       }
     })
-    .then(function(json) {
+    .then(json => {
       if (json.valid) {
         showtoast('vote-ok')
       } else {
@@ -327,7 +327,7 @@ function vote_item(q, obj, id) {
       }
       console.log(json)
     })
-    .catch(function(error) {
+    .catch(error => {
       catchHttpErr('vote', error)
     })
 }
@@ -372,17 +372,17 @@ function toot_action(action_mode) {
     },
     method: 'POST'
   })
-    .then(function(response) {
+    .then(response => {
       if (response.ok) {
         return response.json()
       } else {
         throw response
       }
     })
-    .then(function(json) {
+    .then(json => {
       console.log('OK:' + action_mode)
     })
-    .catch(function(error) {
+    .catch(error => {
       i = 0
       if (action_mode === 0) {
         while (toot[i]) {
@@ -477,20 +477,20 @@ function pin_set(id) {
     },
     method: 'POST'
   })
-    .then(function(response) {
+    .then(response => {
       if (response.ok) {
         return response.json()
       } else {
         throw response
       }
     })
-    .then(function(json) {
+    .then(json => {
       if (json['id']) {
         tl_postdata[json['id']] = json
         showtoast('ok_conf_2')
       }
     })
-    .catch(function(error) {
+    .catch(error => {
       catchHttpErr('pin_set', error)
     })
 }
@@ -528,7 +528,7 @@ function more(id) {
           }
         ]
       })
-      .then(function(index) {
+      .then(index => {
         if (index == 0) show_post(more_status_id)
         else if (index == 1) openURL(url)
         else if (index == 2) copy(url)
@@ -562,7 +562,7 @@ function more(id) {
           }
         ]
       })
-      .then(function(index) {
+      .then(index => {
         if (index == 0) show_post(more_status_id)
         else if (index == 1) openURL(url)
         else if (index == 2) copy(url)
@@ -606,7 +606,7 @@ function nearToot(id, domain) {
       cancelable: true,
       buttons: list
     })
-    .then(function(index) {
+    .then(index => {
       if (index == 0) show_post(id, 'home?')
       if (index == 1) show_post(id, 'public?local=true&')
       if (index == 2) show_post(id, 'public?')
@@ -625,7 +625,7 @@ function delete_post() {
       modifier: 'material',
       cancelable: true
     })
-    .then(function(e) {
+    .then(e => {
       if (e === 1) {
         Fetch('https://' + inst + '/api/v1/statuses/' + more_status_id, {
           headers: {
@@ -634,14 +634,14 @@ function delete_post() {
           },
           method: 'DELETE'
         })
-          .then(function(response) {
+          .then(response => {
             if (response.ok) {
               return response.json()
             } else {
               throw response
             }
           })
-          .then(function(json) {
+          .then(json => {
             var card = $('.post_' + more_status_id),
               i = 0
             while (card[i]) {
@@ -653,7 +653,7 @@ function delete_post() {
             more_acct_id = 0
             more_status_id = 0
           })
-          .catch(function(error) {
+          .catch(error => {
             more_acct_id = 0
             more_status_id = 0
             catchHttpErr('del_post', error)
@@ -674,14 +674,14 @@ function show_post(id, near, near_domain, origin_id) {
     },
     method: 'GET'
   })
-    .then(function(response) {
+    .then(response => {
       if (response.ok) {
         return response.json()
       } else {
         throw response
       }
     })
-    .then(function(json_stat) {
+    .then(json_stat => {
       if (json_stat) {
         if (near) {
           var near_header = { 'content-type': 'application/json' }
@@ -695,14 +695,14 @@ function show_post(id, near, near_domain, origin_id) {
             headers: near_header,
             method: 'GET'
           })
-            .then(function(response) {
+            .then(response => {
               if (response.ok) {
                 return response.json()
               } else {
                 throw response
               }
             })
-            .then(function(json_shita) {
+            .then(json_shita => {
               if (json_shita) {
                 while (json_shita[i]) {
                   reshtml += toot_card(json_shita[i], 'full', null, null, near_domain ? 'near_federated' : null)
@@ -722,14 +722,14 @@ function show_post(id, near, near_domain, origin_id) {
             },
             method: 'GET'
           })
-            .then(function(response) {
+            .then(response => {
               if (response.ok) {
                 return response.json()
               } else {
                 throw response
               }
             })
-            .then(function(json) {
+            .then(json => {
               while (json['ancestors'][d]) {
                 reshtml += toot_card(json['ancestors'][d], null, null)
                 d++
@@ -745,13 +745,13 @@ function show_post(id, near, near_domain, origin_id) {
 
               elemId('show_toot').innerHTML = reshtml
             })
-            .catch(function(error) {
+            .catch(error => {
               catchHttpErr('show_toot_context', error)
             })
         }
       }
     })
-    .catch(function(error) {
+    .catch(error => {
       catchHttpErr('show_post', error)
     })
 }
@@ -763,7 +763,7 @@ function report() {
       modifier: 'material',
       cancelable: true
     })
-    .then(function(repcom) {
+    .then(repcom => {
       if (repcom) {
         Fetch('https://' + inst + '/api/v1/reports', {
           headers: {
@@ -777,20 +777,20 @@ function report() {
             comment: repcom
           })
         })
-          .then(function(response) {
+          .then(response => {
             if (response.ok) {
               return response.json()
             } else {
               throw response
             }
           })
-          .then(function(json) {
+          .then(json => {
             console.log('OK:rep')
             showtoast('report-post')
             more_acct_id = 0
             more_status_id = 0
           })
-          .catch(function(error) {
+          .catch(error => {
             more_acct_id = 0
             more_status_id = 0
             catchHttpErr('report', error)
@@ -804,14 +804,14 @@ function original_post(id, url, acct) {
   Fetch(url, {
     method: 'GET'
   })
-    .then(function(response) {
+    .then(response => {
       if (response.ok) {
         return response.text()
       } else {
         throw response
       }
     })
-    .then(function(text) {
+    .then(text => {
       var t = $(text)
         .filter("meta[property='og:description']")
         .attr('content')
@@ -825,7 +825,7 @@ function original_post(id, url, acct) {
       }
       hide('now_loading')
     })
-    .catch(function(error) {
+    .catch(error => {
       hide('now_loading')
       catchHttpErr('show_original', error)
     })

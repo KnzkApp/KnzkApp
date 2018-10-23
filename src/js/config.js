@@ -196,7 +196,7 @@ function clearAllConfig() {
       modifier: 'material',
       cancelable: true
     })
-    .then(function(e) {
+    .then(e => {
       if (e === 1) {
         localStorage.setItem(
           'knzkapp_conf_mastodon',
