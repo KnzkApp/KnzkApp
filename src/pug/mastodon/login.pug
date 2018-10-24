@@ -37,7 +37,8 @@ ons-template(id='login.html')
         .w-max.main-logo.login_list
           p
             b(data-i18n='login.other') 他のインスタンス
-          ons-input#inst_url(modifier='underbar', placeholder='mastodon.social', float='')
+          p.y-center
+            ons-input#inst_url(modifier='underbar', placeholder='mastodon.social', float='', style='width: 80%;')
           p.y-center
             ons-button(onclick="login_open_c(elemId('inst_url').value)", style='width: 80%;')
               b(data-i18n='login.login') ログイン
