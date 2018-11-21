@@ -64,7 +64,7 @@
     "phonegap-plugin-speech-synthesis": "git+https://github.com/KnzkApp/SpeechSynthesisPlugin"
   },
   "devDependencies": {
-    "cordova": "7.1.0",
+    "cordova": "8.1.2",
     "eslint": "5.9.0",
     "eslint-config-prettier": "3.3.0",
     "eslint-plugin-prettier": "3.0.0",
