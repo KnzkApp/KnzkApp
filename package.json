@@ -17,8 +17,9 @@
     "fmt:yml": "prettier --write '**/*.{yaml,yml}'",
     "fmt:json": "prettier --write '**/*.json'",
     "fmt": "npm-run-all fmt:* -s",
+    "dev": "yarn build && serve www | gulp watch",
     "build": "yarn fmt && yarn lint && gulp build",
-    "dev": "yarn build && serve www | gulp watch"
+    "check:deps": "node ./scripts/check-deps.js"
   },
   "cordova": {
     "plugins": {
@@ -64,6 +65,7 @@
     "phonegap-plugin-speech-synthesis": "git+https://github.com/KnzkApp/SpeechSynthesisPlugin"
   },
   "devDependencies": {
+    "chalk": "2.4.1",
     "cordova": "7.1.0",
     "eslint": "5.10.0",
     "eslint-config-prettier": "3.3.0",
